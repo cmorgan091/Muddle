@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muddle.Domain", "Muddle.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muddle.Domain.Test", "Muddle.Domain.Test\Muddle.Domain.Test.csproj", "{3009FB59-DECA-49AC-8A4C-5E34A2DCCEA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muddle.Sample", "Muddle.Sample\Muddle.Sample.csproj", "{DD4FB4C4-5409-4CB1-B462-70D4AE7870C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muddle.Sample", "Muddle.Sample\Muddle.Sample.csproj", "{DD4FB4C4-5409-4CB1-B462-70D4AE7870C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{5260DE8A-87A9-44D0-B88E-23A5A89B1C87}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
