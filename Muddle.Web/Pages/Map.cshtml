@@ -1,0 +1,72 @@
+﻿@page
+@using Muddle.Domain.Helpers
+@using Muddle.Domain.Models
+@model MapModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    img.icon
+{
+        height: 64px;
+        width: 64px;
+        }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Map Example</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table class="m-0 p-0">
+    <tr>
+        <th class="m-0 p-0">#</th>
+        @for (var x = Model.Map.MinX; x <= Model.Map.MaxX; x++)
+        {
+            <th class="m-0 p-0 text-center">
+                @x
+            </th>
+        }
+    </tr>
+    @for (var y = Model.Map.MinY; y <= Model.Map.MaxY; y++)
+    {
+        <tr>
+            <th class="m-0 p-0 align-middle">
+                @y
+            </th>
+            @for (var x = Model.Map.MinX; x <= Model.Map.MaxX; x++)
+            {
+                var point = Model.Map.GetPoint(x, y);
+        <td class="m-0 p-0">
+            @if (point.HasPath)
+            {
+                switch (point.PathOrientation)
+                {
+                    case Orientations.Vertical:
+                        <img src="img/iconsets/default/path-vertical.png" class="icon"/>
+                        break;
+
+                    case Orientations.Horizontal:
+                        <img src="img/iconsets/default/path-horizontal.png" class="icon"/>
+                        break;
+
+                    case Orientations.Both:
+                        <img src="img/iconsets/default/path-cross.png" class="icon"/>
+                        break;
+
+                    default:
+                        @point.PathOrientation.CharRepresentation()
+                        break;
+                }
+
+            }
+            else
+            {
+                <img src="img/iconsets/default/default.png" class="icon" />
+            }
+        </td>
+            }
+        </tr>
+    }
+</table>
