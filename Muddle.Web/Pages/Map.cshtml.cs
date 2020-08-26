@@ -8,15 +8,16 @@ namespace Muddle.Web.Pages
     public class MapModel : PageModel
     {
         private readonly ILogger<MapModel> _logger;
-        private readonly Map _map;
 
         public MapModel(ILogger<MapModel> logger)
         {
             _logger = logger;
-            _map = new CMMap().GetMap();
+            ForkMap = new ForkMap().GetMap();
+            CMMap = new CMMap().GetMap();
         }
 
-        public Map Map => _map;
+        public Map ForkMap { get; }
+        public Map CMMap { get; }
 
         public void OnGet()
         {
