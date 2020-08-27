@@ -96,7 +96,15 @@ namespace Muddle.Web.TagHelpers
                     }
                     else
                     {
-                        sb.Append($"<img src='img/iconsets/default/default.png' class='icon'/>");
+                        if (point.BackgroundItems.Any())
+                        {
+                            var backgroundItem = point.BackgroundItems.Single();
+                            sb.Append($"<img src='img/iconsets/default/backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' class='icon'/>");
+                        }
+                        else
+                        {
+                            sb.Append($"<img src='img/iconsets/default/default.png' class='icon'/>");
+                        }
                     }
 
                     sb.Append("</td>");

@@ -18,6 +18,18 @@
             return this;
         }
 
+        public MapBuilder AddBackgroundItem(BackgroundItem backgroundItem)
+        {
+            _map.AddBackgroundItem(backgroundItem);
+
+            return this;
+        }
+
+        public MapBuilder AddBackgroundItem(int topLeftX, int topLeftY)
+        {
+            return AddBackgroundItem(new BackgroundItem(topLeftX, topLeftY));
+        }
+
         public Map Build()
         {
             return _map;

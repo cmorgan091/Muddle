@@ -24,7 +24,10 @@ var map = new MapBuilder(9, 5)
     .Build();
 </code></pre>
 
-<h1>Single Path</h1>
+<h1>Paths</h1>
+<p>Paths are the primary surface that a character can travel along</p>
+
+<h2>Single Path</h2>
 <p>A single path on an 9x5 map, with the path starting at point 1,2 and travelling East for 7 blocks</p>
 <render-map Map="@(new MapBuilder(9, 5).AddPath(1, 2, 7, Directions.East).Build())"></render-map>
 <pre><code>
@@ -33,7 +36,7 @@ var map = new MapBuilder(9, 5)
     .Build();
 </code></pre>
 
-<h1>Crossroad</h1>
+<h2>Crossroad</h2>
 <p>Continuing from the first map, we add a second path starting at point 4,1 and travelling South for 3 blocks</p>
 <render-map Map="@(new MapBuilder(9, 5)
                      .AddPath(1, 2, 7, Directions.East)
@@ -46,7 +49,7 @@ var map = new MapBuilder(9, 5)
     .Build();
 </code></pre>
 
-<h1>Fork Map Example</h1>
+<h2>Fork Map Example</h2>
 
 <p>A simple map shown like a fork</p>
 
@@ -62,7 +65,7 @@ var map = new MapBuilder(10, 5)
     .Build();
 </code></pre>
 
-<h1>CM Map Example</h1>
+<h2>CM Map Example</h2>
 
 <p>A map with paths that look like a letter C followed by a letter M</p>
 
@@ -81,4 +84,37 @@ var map = new MapBuilder(13, 7)
     .AddPath(10, 1, 3, Directions.East)
     .AddPath(12, 1, 5, Directions.South)
     .Build();
+</code></pre>
+
+<h1>Background Items</h1>
+<p>Background items are objects that we cannot interact with directly, but are there for decoration</p>
+
+<h2>Single Item</h2>
+<p>A single item on a map</p>
+<render-map Map="@(new MapBuilder(9, 5)
+                     .AddBackgroundItem(1, 1)
+                     .Build())"></render-map>
+<pre><code>
+var map = new MapBuilder(9, 5)
+    .AddBackgroundItem(1, 1)
+    .Build()
+</code></pre>
+
+<h2>Multiple Items</h2>
+<p>Multiple items on a map beside a path</p>
+<render-map Map="@(new MapBuilder(9, 5)
+                     .AddBackgroundItem(1, 1)
+                     .AddBackgroundItem(3, 1)
+                     .AddPath(0,2,7,Directions.East)
+                     .AddBackgroundItem(2, 3)
+                     .AddBackgroundItem(5, 3)
+                     .Build())"></render-map>
+<pre><code>
+var map = new MapBuilder(9, 5)
+    .AddBackgroundItem(1, 1)
+    .AddBackgroundItem(3, 1)
+    .AddPath(0,2,7,Directions.East)
+    .AddBackgroundItem(2, 3)
+    .AddBackgroundItem(5, 3)
+    .Build()
 </code></pre>

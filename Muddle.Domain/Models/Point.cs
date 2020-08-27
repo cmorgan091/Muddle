@@ -51,6 +51,7 @@ namespace Muddle.Domain.Models
         }
 
         public List<PathIntersect> PathIntersects { get; set; } = new List<PathIntersect>();
+        public List<BackgroundItem> BackgroundItems { get; set; } = new List<BackgroundItem>();
 
         public Directions? PathTerminusDirection
         {
@@ -77,6 +78,16 @@ namespace Muddle.Domain.Models
         public void AddPathIntersect(PathIntersect pathIntersect)
         {
             PathIntersects.Add(pathIntersect);
+        }
+
+        public void AddBackgroundItem(BackgroundItem backgroundItem)
+        {
+            BackgroundItems.Add(backgroundItem);
+        }
+
+        public void AddBackgroundItem(IEnumerable<BackgroundItem> backgroundItem)
+        {
+            BackgroundItems.AddRange(backgroundItem);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Muddle.Domain.Models
             Height = height;
 
             Paths = new List<Path>();
+            BackgroundItems = new List<BackgroundItem>();
         }
 
         private int Width { get; set; }
@@ -38,11 +39,22 @@ namespace Muddle.Domain.Models
         public int MaxX => Width - MinX - 1;
         public int MaxY => Height - MinY - 1;
 
-        private List<Path> Paths { get; set; }
+        private List<Path> Paths { get; }
+        private List<BackgroundItem> BackgroundItems { get; }
 
         public void AddPath(Path path)
         {
             Paths.Add(path);
+        }
+
+        public void AddBackgroundItem(BackgroundItem backgroundItem)
+        {
+            BackgroundItems.Add(backgroundItem);
+        }
+
+        public void AddBackgroundItem(IEnumerable<BackgroundItem> backgroundItems)
+        {
+            BackgroundItems.AddRange(backgroundItems);
         }
 
         public Point GetPoint(int x, int y)
@@ -80,6 +92,13 @@ namespace Muddle.Domain.Models
                     point.AddPathIntersect(intersect);
                 }
             }
+
+            // find all background intersections
+            point.AddBackgroundItem(BackgroundItems.Where(i =>
+                i.TopLeftX <= x
+                && (i.TopLeftX + i.Width - 1) >= x
+                && i.TopLeftY <= y
+                && (i.TopLeftY + i.Height - 1) >= y));
 
             return point;
         }
