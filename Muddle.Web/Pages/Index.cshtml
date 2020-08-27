@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Reflection
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,10 +7,28 @@
 
 
 <h1 class="display-4">Welcome to Muddle</h1>
+<div>
+    <img src="https://github.com/cmorgan091/Muddle/workflows/.NET%20Core/badge.svg" />
+    <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version)-green"/>
+</div>
 <p>Multi User Dimension Development Learning Environment (MUDDLE) is a multiplayer game engine designed to help (primarily) school children learn how to code in various languages and using various techniques.</p>
 
 <div class="alert alert-warning">
     We are presently in the early stages of setting up this website, so please bear with us whilst we launch.
 </div>
+
+<p>
+    Key languages and concepts are:
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Graphical editing</li>
+        <li>Web technologies</li>
+        <li>Object orientated programming</li>
+        <li>.Net Core (C#)</li>
+    </ul>
+</p>
+
+
 
 <h2><a href="/Map">Maps</a> - An overview of how to create a map</h2>
