@@ -14,6 +14,11 @@ namespace Muddle.Domain.Models
 
         public bool HasPath => PathIntersects.Any();
 
+        public override string ToString()
+        {
+            return $"{X},{Y}";
+        }
+
         public Orientations? PathOrientation
         {
             get
@@ -35,6 +40,13 @@ namespace Muddle.Domain.Models
 
                 throw new Exception($"Multiple paths in the same orientation were found");
             }
+        }
+
+        public bool HasJunction => PathIntersects.Count > 1;
+
+        public Junction GetJunction()
+        {
+            return new Junction(this);
         }
 
         public List<PathIntersect> PathIntersects { get; set; } = new List<PathIntersect>();

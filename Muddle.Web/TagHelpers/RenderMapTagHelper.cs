@@ -64,7 +64,23 @@ namespace Muddle.Web.TagHelpers
                                 break;
 
                             case Orientations.Both:
-                                sb.Append($"<img src='img/iconsets/default/path-cross.png' class='icon'/>");
+                                var junction = point.GetJunction();
+
+                                switch (junction.Type)
+                                {
+                                    case Junction.JunctionTypes.Crossroad:
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-crossroad.png' class='icon'/>");
+                                        break;
+                                    case Junction.JunctionTypes.TJunction:
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' class='icon'/>");
+                                        break;
+                                    case Junction.JunctionTypes.Righthand:
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' class='icon'/>");
+                                        break;
+                                    default:
+                                        throw new Exception($"Unknown junction type {junction.Type}");
+                                }
+
                                 break;
 
                             default:
