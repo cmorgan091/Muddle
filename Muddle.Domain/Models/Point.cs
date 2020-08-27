@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Muddle.Domain.Helpers;
 
 namespace Muddle.Domain.Models
 {
@@ -50,6 +51,28 @@ namespace Muddle.Domain.Models
         }
 
         public List<PathIntersect> PathIntersects { get; set; } = new List<PathIntersect>();
+
+        public Directions? PathTerminusDirection
+        {
+            get
+            {
+                if (PathIntersects.Count == 1)
+                {
+                    var pathIntersect = PathIntersects.Single();
+                    if (pathIntersect.IsPathStart)
+                    {
+                        return pathIntersect.Path.Direction.Opposite();
+                    }
+
+                    if (pathIntersect.IsPathEnd)
+                    {
+                        return pathIntersect.Path.Direction;
+                    }
+                }
+
+                return null;
+            }
+        }
 
         public void AddPathIntersect(PathIntersect pathIntersect)
         {

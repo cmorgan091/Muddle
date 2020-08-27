@@ -56,11 +56,16 @@ namespace Muddle.Web.TagHelpers
                         switch (point.PathOrientation)
                         {
                             case Orientations.Vertical:
-                                sb.Append($"<img src='img/iconsets/default/path-vertical.png' class='icon'/>");
+                                sb.Append(point.PathTerminusDirection.HasValue
+                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' class='icon'/>"
+                                    : $"<img src='img/iconsets/default/path-vertical.png' class='icon'/>");
+
                                 break;
 
                             case Orientations.Horizontal:
-                                sb.Append($"<img src='img/iconsets/default/path-horizontal.png' class='icon'/>");
+                                sb.Append(point.PathTerminusDirection.HasValue
+                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' class='icon'/>"
+                                    : $"<img src='img/iconsets/default/path-horizontal.png' class='icon'/>");
                                 break;
 
                             case Orientations.Both:

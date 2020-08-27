@@ -1,4 +1,5 @@
-﻿using Muddle.Domain.Models;
+﻿using System;
+using Muddle.Domain.Models;
 
 namespace Muddle.Domain.Helpers
 {
@@ -9,6 +10,23 @@ namespace Muddle.Domain.Helpers
             return (direction == Directions.North || direction == Directions.South)
                 ? Orientations.Vertical
                 : Orientations.Horizontal;
+        }
+
+        public static Directions Opposite(this Directions direction)
+        {
+            switch (direction)
+            {
+                case Directions.North:
+                    return Directions.South;
+                case Directions.East:
+                    return Directions.West;
+                case Directions.South:
+                    return Directions.North;
+                case Directions.West:
+                    return Directions.East;
+            }
+
+            throw new Exception($"Unknown direction {direction}");
         }
     }
 }

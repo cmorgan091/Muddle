@@ -79,5 +79,31 @@ namespace Muddle.Domain.Test
             junction.Type.Should().Be(Junction.JunctionTypes.Righthand);
             junction.FromDirection.Should().Be(Directions.East);
         }
+
+        [Fact]
+        public void ForkMap_Point_0_1_is_path_terminus_north()
+        {
+            // arrange
+            var map = new ForkMap().GetMap();
+
+            // act
+            var point = map.GetPoint(0, 1);
+
+            // assert
+            point.PathTerminusDirection.Should().Be(Directions.North);
+        }
+
+        [Fact]
+        public void ForkMap_Point_0_2_is_not_path_terminus()
+        {
+            // arrange
+            var map = new ForkMap().GetMap();
+
+            // act
+            var point = map.GetPoint(0, 2);
+
+            // assert
+            point.PathTerminusDirection.Should().BeNull();
+        }
     }
 }
