@@ -18,7 +18,7 @@ namespace Muddle.Web.TagHelpers
             var sb = new StringBuilder();
 
             sb.Append($@"
-<table class='m-0 p-0'>
+<table>
     <tr>
         <th class='m-0 p-0'>
             #
@@ -28,7 +28,7 @@ namespace Muddle.Web.TagHelpers
             for (var x = Map.MinX; x <= Map.MaxX; x++)
             {
                 sb.Append($@"
-        <th class='m-0 p-0 text-center'>
+        <th class='text-center'>
             {x}
         </th>
 ");
@@ -41,7 +41,7 @@ namespace Muddle.Web.TagHelpers
             {
                 sb.Append($@"
     <tr>
-        <th class='m-0 p-0 align-middle'>
+        <th class='align-middle'>
             {y}
         </th>
 ");
@@ -57,15 +57,15 @@ namespace Muddle.Web.TagHelpers
                         {
                             case Orientations.Vertical:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' class='icon'/>"
-                                    : $"<img src='img/iconsets/default/path-vertical.png' class='icon'/>");
+                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='img/iconsets/default/path-vertical.png' alt='Path' class='icon'/>");
 
                                 break;
 
                             case Orientations.Horizontal:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' class='icon'/>"
-                                    : $"<img src='img/iconsets/default/path-horizontal.png' class='icon'/>");
+                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='img/iconsets/default/path-horizontal.png' alt='Path' class='icon'/>");
                                 break;
 
                             case Orientations.Both:
@@ -74,13 +74,13 @@ namespace Muddle.Web.TagHelpers
                                 switch (junction.Type)
                                 {
                                     case Junction.JunctionTypes.Crossroad:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-crossroad.png' class='icon'/>");
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-crossroad.png' alt='Crossroad' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.TJunction:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' class='icon'/>");
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' alt='T Junction' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.Righthand:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' class='icon'/>");
+                                        sb.Append($"<img src='img/iconsets/default/path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' alt='Corner' class='icon'/>");
                                         break;
                                     default:
                                         throw new Exception($"Unknown junction type {junction.Type}");
@@ -99,11 +99,11 @@ namespace Muddle.Web.TagHelpers
                         if (point.BackgroundItems.Any())
                         {
                             var backgroundItem = point.BackgroundItems.Single();
-                            sb.Append($"<img src='img/iconsets/default/backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' class='icon'/>");
+                            sb.Append($"<img src='img/iconsets/default/backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' alt='Background item' class='icon'/>");
                         }
                         else
                         {
-                            sb.Append($"<img src='img/iconsets/default/default.png' class='icon'/>");
+                            sb.Append($"<img src='img/iconsets/default/default.png' alt='Default background' class='icon'/>");
                         }
                     }
 
