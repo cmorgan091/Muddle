@@ -6,7 +6,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <PackageId>Muddle.Web</PackageId>
-    <Description>Development Learning Environment for MUD games</Description>
+    <Description>Website covering the documentation of Muddle</Description>
   </PropertyGroup>
 
   <ItemGroup>
