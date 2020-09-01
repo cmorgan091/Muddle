@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5ECB7442
 		Build\muddle.props = Build\muddle.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muddle.AspNetCore", "Muddle.AspNetCore\Muddle.AspNetCore.csproj", "{084D286F-377A-4CC6-95E2-495CD056C67B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{DD4FB4C4-5409-4CB1-B462-70D4AE7870C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD4FB4C4-5409-4CB1-B462-70D4AE7870C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD4FB4C4-5409-4CB1-B462-70D4AE7870C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084D286F-377A-4CC6-95E2-495CD056C67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084D286F-377A-4CC6-95E2-495CD056C67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084D286F-377A-4CC6-95E2-495CD056C67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084D286F-377A-4CC6-95E2-495CD056C67B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Muddle.Domain.Helpers;
 using Muddle.Domain.Models;
 
-namespace Muddle.Web.TagHelpers
+namespace Muddle.AspNetCore.TagHelpers
 {
     public class RenderMapTagHelper: TagHelper
     {

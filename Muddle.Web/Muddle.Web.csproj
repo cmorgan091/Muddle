@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Muddle.Domain\Muddle.Domain.csproj" />
+    <ProjectReference Include="..\Muddle.AspNetCore\Muddle.AspNetCore.csproj" />
     <ProjectReference Include="..\Muddle.Sample\Muddle.Sample.csproj" />
   </ItemGroup>
 

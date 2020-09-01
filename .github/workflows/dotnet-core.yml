@@ -48,9 +48,9 @@ jobs:
           VERSION_FILE_PATH: Build/muddle.props
 
     # Publish to Nuget:
-    - name: Publish Muddle.Web
+    - name: Publish Muddle.AspNetCore
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: Muddle.Web/Muddle.Web.csproj
+          PROJECT_FILE_PATH: Muddle.AspNetCore/Muddle.AspNetCore.csproj
           NUGET_KEY: ${{secrets.NUGET_PUBLISH_API_KEY}}
           VERSION_FILE_PATH: Build/muddle.props
