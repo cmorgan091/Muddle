@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg200"
+   version="1.1"
+   viewBox="0 0 16 16"
+   height="16mm"
+   width="16mm">
+  <title
+     id="title210">Muddle Logo</title>
+  <defs
+     id="defs194" />
+  <metadata
+     id="metadata197">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Muddle Logo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <rect
+       id="rect168"
+       width="16"
+       height="16"
+       x="0"
+       y="0"
+       style="fill:#4285f4;stroke-width:0.341556"
+       ry="2.5217395" />
+    <path
+       d="m 2.4484936,12.71075 h 2.223568 V 7.0850153 H 2.4484936 Z M 13.566334,3.7095743 V 12.71075 H 11.342766 V 5.9598683 q -0.322421,0 -0.567012,0.07878 -0.678187,0.168773 -1.0784304,0.573827 -0.578126,0.585075 -0.578126,1.5977 V 12.710763 H 6.8956296 V 8.2101753 q -0.02227,-0.146266 -0.04444,-0.281284 -0.01114,-0.146266 -0.0333,-0.292532 -0.166766,-0.686351 -0.567009,-1.091395 -0.578126,-0.585085 -1.578735,-0.585085 h -2.223567 l 1.111783,-2.250295 h 1.111784 q 0.1223,0 0.266829,0.01127 0.14454,0.01127 0.300183,0.0337 0.633719,0.10121 1.32302,0.360052 0.85608,0.360051 1.456445,0.978881 0.533647,-0.641336 1.278552,-0.978881 0.8783084,-0.405055 2.0456754,-0.405055 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:'Flipside BRK';-inkscape-font-specification:'Flipside BRK';white-space:pre;shape-inside:url(#rect30);fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.0568"
+       id="path34" />
+  </g>
+</svg>
