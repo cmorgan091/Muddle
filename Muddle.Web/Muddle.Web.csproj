@@ -7,7 +7,6 @@
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <PackageId>Muddle</PackageId>
     <Description>Development Learning Environment for MUD games</Description>
-    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
