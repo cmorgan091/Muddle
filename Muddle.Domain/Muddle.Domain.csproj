@@ -5,6 +5,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageIcon>logo.ico</PackageIcon>
+    <Description>Domain elements and abstractions for use with the Muddle development environment</Description>
   </PropertyGroup>
 
   <ItemGroup>
