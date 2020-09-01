@@ -4,12 +4,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageIcon>logo.ico</PackageIcon>
+    <PackageIcon>logo-60px.png</PackageIcon>
     <Description>Domain elements and abstractions for use with the Muddle development environment</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\logo.ico">
+    <None Include="..\Muddle.Web\wwwroot\img\logo-60px.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
