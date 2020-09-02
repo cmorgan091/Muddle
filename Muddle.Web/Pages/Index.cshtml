@@ -5,63 +5,114 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container px-4 px-md-3" style="padding-top: 3rem;padding-bottom: 3rem;">
-    <div class="row align-items-lg-center">
-        <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5">
-            Add image here with logo
-        </div>
-        <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-left">
-            <h1 class="mb-3" style="font-weight: 500; font-size: 3.5rem;">Build multi-player MUD games with Muddle</h1>
-            <p class="lead mb-4">
-                Quickly design and build web based MUD games using an open source framework, designed to help those new to programming how to learn by doing
-            </p>
 
-            <div class="d-flex flex-column flex-md-row">
-                <a href="/Map" class="btn btn-lg btn-bd-primary mb-3 mr-md-3">Get started</a>
-                @*<a href="#" class="btn btn-lg btn-outline-secondary mb-3">Download</a>*@
+@section Masthead
+{
+    <div class="container px-0 py-md-3">
+        <div class="row align-items-lg-center">
+            <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5 text-center">
+                <img src="img/logo-stack.png" width="300"/>
             </div>
-            <p class="text-muted mb-0">
-                Currently <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version.ToString(3))-green" />
-            </p>
+            <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-left">
+                <h1 class="mb-3" style="font-weight: 500; font-size: 3.5rem;">Build multi-player web games with Muddle</h1>
+                <p class="lead mb-4">
+                    Quickly design and build web based games using an open source framework, designed to help those new to programming how to learn by doing
+                </p>
+
+                <div class="d-flex flex-column flex-md-row">
+                    <a asp-page="/Map" class="btn btn-lg btn-primary mb-3 mr-md-3">Get started</a>
+                    @*<a href="#" class="btn btn-lg btn-outline-secondary mb-3">Download</a>*@
+                </div>
+                <p class="text-muted mb-0">
+                    Currently <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version.ToString(3))-green"/>
+                </p>
+            </div>
         </div>
+
     </div>
-    
+}
+
+<div class="py-md-3">
+    <h2>What is Muddle?</h2>
+
+    <p>Multi User Dimension Development Learning Environment (MUDDLE) is a multi-player game engine designed to help those new to coding, learn how to code in various languages and using various techniques.</p>
 </div>
 
 
-<h2>What is Muddle?</h2>
+<div class="py-md-3">
+    <h3>Key languages and concepts are:</h3>
 
-<p>Multi User Dimension Development Learning Environment (MUDDLE) is a multiplayer game engine designed to help (primarily) school children learn how to code in various languages and using various techniques.</p>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="img/html.png"
+                     class="card-img-top"
+                     alt="HTML 5" />
+                <div class="card-body">
+                    <h5 class="card-title">HTML</h5>
+                    <p class="card-text">
+                        HTML is used for the layout of web pages used
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="img/css.png"
+                     class="card-img-top"
+                     alt="CSS 3" />
+                <div class="card-body">
+                    <h5 class="card-title">CSS</h5>
+                    <p class="card-text">CSS is used to apply styling to the web pages</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="img/c-sharp.png"
+                     class="card-img-top"
+                     alt="C#" />
+                <div class="card-body">
+                    <h5 class="card-title">C# (.Net Core)</h5>
+                    <p class="card-text">
+                        C# implementing .Net Core is the primary programming language for operating the game
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<p>
-    Key languages and concepts are:
+    </div>
+    <p>As well as:</p>
     <ul>
-        <li>HTML</li>
-        <li>CSS</li>
         <li>Graphical editing</li>
         <li>Web technologies</li>
         <li>Object orientated programming</li>
-        <li>.Net Core (C#)</li>
     </ul>
-</p>
-
-<p>The source code for this open source and available at <a href="https://github.com/cmorgan091/Muddle/">https://github.com/cmorgan091/Muddle/</a></p>
-
-<h2>Key Concepts</h2>
-
-<ul>
-    <li><a href="/Map">Maps</a> - An overview of how to create a map</li>
-</ul>
-
-<h2>Development Statistics</h2>
-
-<div class="text-center">
-    <img src="https://github.com/cmorgan091/Muddle/workflows/CI%20CD%20to%20Azure/badge.svg" />
-    <img src="https://img.shields.io/github/last-commit/cmorgan091/muddle.svg?maxAge=3600" />
-    <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version.ToString(3))-green" />
-    <img src="https://img.shields.io/github/commit-activity/w/cmorgan091/muddle" />
-    <img src="https://buildstats.info/nuget/Muddle"/>
 </div>
-<div class="text-center">
-    <img src="https://buildstats.info/github/chart/cmorgan091/muddle"/>
+
+<div class="py-md-3">
+
+
+    <h2>Muddle Concepts</h2>
+
+    <ul>
+        <li><a asp-page="/Map">Maps</a> - An overview of how to create a map</li>
+    </ul>
+</div>
+
+<div class="py-md-3">
+    <h2>Development</h2>
+
+    <p>The source code for this open source and available at <a href="https://github.com/cmorgan091/Muddle/">https://github.com/cmorgan091/Muddle/</a></p>
+
+    <div class="text-center">
+        <img src="https://github.com/cmorgan091/Muddle/workflows/CI%20CD%20to%20Azure/badge.svg" />
+        <img src="https://img.shields.io/github/last-commit/cmorgan091/muddle.svg?maxAge=3600" />
+        <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version.ToString(3))-green" />
+        <img src="https://img.shields.io/github/commit-activity/w/cmorgan091/muddle" />
+        <img src="https://buildstats.info/nuget/Muddle" />
+    </div>
+    <div class="text-center">
+        <img src="https://buildstats.info/github/chart/cmorgan091/muddle" />
+    </div>
 </div>

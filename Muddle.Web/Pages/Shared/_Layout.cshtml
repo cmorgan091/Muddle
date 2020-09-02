@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark primary-color">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
-                    <img src="img/logo-border.svg" height="40" width="40" style="margin-right: 10px;"/>
+                    <img src="img/logo-border.svg" height="40" width="40" style="margin-right: 10px;" />
 
                     Muddle.dev
                 </a>
@@ -39,11 +39,26 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+
+    @if (IsSectionDefined("Masthead"))
+    {
+        <main role="main" class="pb-3 masthead">
+            <div class="container">
+                @RenderSection("Masthead", required: false)
+            </div>
         </main>
-    </div>
+        <div class="container masthead-followup">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        <main role="main" class="pb-3">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </main>
+    }
 
     <footer class="page-footer font-small blue fixed-bottom">
         <div class="container-fluid text-center">
