@@ -1,0 +1,8 @@
+﻿table.muddle-map {
+    line-height: 16px;
+}
+
+table.muddle-map > tbody > tr > td > img.icon {
+    height: 32px;
+    width: 32px;
+}

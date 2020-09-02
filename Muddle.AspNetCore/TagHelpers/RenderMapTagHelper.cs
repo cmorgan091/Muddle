@@ -22,7 +22,7 @@ namespace Muddle.AspNetCore.TagHelpers
         {
             var sb = new StringBuilder();
 
-            sb.Append($@"<table>");
+            sb.Append($@"<table class='muddle-map'>");
 
             if (ShowCoordinates)
             {

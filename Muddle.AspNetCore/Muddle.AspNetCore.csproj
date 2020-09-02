@@ -18,10 +18,13 @@
 		<EmbeddedResource Include="resources\**\*" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="resources\muddle\css\muddle.css" />
+	</ItemGroup>
+
 	
 
 	<ItemGroup>
-	  <Content Include="resources\default.png" />
 	  <Content Include="resources\muddle\img\iconsets\default\backgrounditem-1x1-1.png" />
 	  <Content Include="resources\muddle\img\iconsets\default\default.png" />
 	  <Content Include="resources\muddle\img\iconsets\default\path-end-east.png" />
