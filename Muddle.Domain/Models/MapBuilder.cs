@@ -9,9 +9,9 @@
             _map = new Map(width, height);
         }
 
-        public MapBuilder AddPath(int startX, int startY, int length, Directions direction)
+        public MapBuilder AddPath(int startX, int startY, Directions direction, int length)
         {
-            var path = new Path(startX, startY, length, direction);
+            var path = new Path(startX, startY, direction, length);
 
             _map.AddPath(path);
 

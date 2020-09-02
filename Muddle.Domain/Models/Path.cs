@@ -4,7 +4,7 @@ namespace Muddle.Domain.Models
 {
     public class Path
     {
-        public Path(int startX, int startY, int length, Directions direction)
+        public Path(int startX, int startY, Directions direction, int length)
         {
             StartX = startX;
             StartY = startY;

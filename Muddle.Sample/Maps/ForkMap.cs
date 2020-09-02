@@ -16,11 +16,11 @@ namespace Muddle.Sample.Maps
             // 4     +----
 
             var map = new MapBuilder(10, 5)
-                    .AddPath(0, 2, 10, Directions.East)
-                    .AddPath(5, 0, 5, Directions.South)
-                    .AddPath(5, 0, 5, Directions.East)
-                    .AddPath(9, 4, 5, Directions.West)
-                    .AddPath(0, 3, 3, Directions.North)
+                    .AddPath(0, 2, Directions.East, 10)
+                    .AddPath(5, 0, Directions.South, 5)
+                    .AddPath(5, 0, Directions.East, 5)
+                    .AddPath(9, 4, Directions.West, 5)
+                    .AddPath(0, 3, Directions.North, 3)
                 ;
 
             return map.Build();
@@ -43,16 +43,16 @@ namespace Muddle.Sample.Maps
             // 6
 
             var map = new MapBuilder(13, 7)
-                    .AddPath(1, 1, 3, Directions.East)
-                    .AddPath(1, 1, 5, Directions.South)
-                    .AddPath(1, 5, 6, Directions.East)
-                    .AddPath(6, 5, 5, Directions.North)
-                    .AddPath(6, 1, 3, Directions.East)
-                    .AddPath(8, 1, 3, Directions.South)
-                    .AddPath(8, 3, 3, Directions.East)
-                    .AddPath(10, 3, 3, Directions.North)
-                    .AddPath(10, 1, 3, Directions.East)
-                    .AddPath(12, 1, 5, Directions.South)
+                    .AddPath(1, 1, Directions.East, 3)
+                    .AddPath(1, 1, Directions.South, 5)
+                    .AddPath(1, 5, Directions.East, 6)
+                    .AddPath(6, 5, Directions.North, 5)
+                    .AddPath(6, 1, Directions.East, 3)
+                    .AddPath(8, 1, Directions.South, 3)
+                    .AddPath(8, 3, Directions.East, 3)
+                    .AddPath(10, 3, Directions.North, 3)
+                    .AddPath(10, 1, Directions.East, 3)
+                    .AddPath(12, 1, Directions.South, 5)
                 ;
 
             return map.Build();
