@@ -9,6 +9,7 @@
     <link href="~/mdb/css/style.css" rel="stylesheet">
     <title>@ViewData["Title"] - Muddle</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/prism.css" />
 </head>
 <body>
     <header>
@@ -31,9 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Map">Maps</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -62,7 +63,7 @@
 
     <footer class="page-footer font-small blue fixed-bottom">
         <div class="container-fluid text-center">
-            &copy; 2020 - Muddle - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2020 - Muddle @*- <a asp-area="" asp-page="/Privacy">Privacy</a>*@
         </div>
     </footer>
 
@@ -71,6 +72,7 @@
     <script type="text/javascript" src="~/mdb/js/popper.min.js"></script>
     <script type="text/javascript" src="~/mdb/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/mdb/js/mdb.min.js"></script>
+    <script type="text/javascript" src="~/js/prism.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
