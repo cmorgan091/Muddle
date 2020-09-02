@@ -7,11 +7,44 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <PackageId>Muddle</PackageId>
     <AssemblyName>Muddle</AssemblyName>
+	<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="resources\**\*" />
+	</ItemGroup>
+
+	
+
+	<ItemGroup>
+	  <Content Include="resources\default.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\backgrounditem-1x1-1.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\default.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-end-east.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-end-north.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-end-south.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-end-west.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-horizontal.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-crossroad.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-righthand-east.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-righthand-north.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-righthand-south.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-righthand-west.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-tjunction-east.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-tjunction-north.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-tjunction-south.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-junction-tjunction-west.png" />
+	  <Content Include="resources\muddle\img\iconsets\default\path-vertical.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Muddle.Domain\Muddle.Domain.csproj" />
+	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.0" />
+	</ItemGroup>
 
 
 </Project>

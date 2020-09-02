@@ -16,7 +16,7 @@ namespace Muddle.AspNetCore.TagHelpers
         /// </summary>
         public bool ShowCoordinates { get; set; }
 
-        private string _imagePath = "_content/Muddle/muddle/{_imagePath}";
+        private string _imagePath = "/muddle/img/iconsets/default/";//= "_content/Muddle/muddle/img/iconsets/default/";
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
