@@ -11,38 +11,53 @@ namespace Muddle.AspNetCore.TagHelpers
     {
         public Map Map { get; set; }
 
+        /// <summary>
+        /// Include the numeric grid coordinates in the rendered map (helpful for debugging)
+        /// </summary>
+        public bool ShowCoordinates { get; set; }
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var sb = new StringBuilder();
 
-            sb.Append($@"
-<table>
-    <tr>
+            sb.Append($@"<table>");
+
+            if (ShowCoordinates)
+            {
+                sb.Append($@"
+     <tr>
         <th class='m-0 p-0'>
             #
         </th>
 ");
 
-            for (var x = Map.MinX; x <= Map.MaxX; x++)
-            {
-                sb.Append($@"
+                for (var x = Map.MinX; x <= Map.MaxX; x++)
+                {
+                    sb.Append($@"
         <th class='text-center'>
             {x}
         </th>
 ");
-            }
+                }
 
-            sb.Append($@"
+                sb.Append($@"
     </tr>
 ");
+            }
+
             for (var y = Map.MinY; y <= Map.MaxY; y++)
             {
-                sb.Append($@"
-    <tr>
+                sb.Append($@"<tr>");
+
+                if (ShowCoordinates)
+                {
+                    sb.Append($@"                
         <th class='align-middle'>
             {y}
         </th>
 ");
+                }
+
                 for (var x = Map.MinX; x <= Map.MaxX; x++)
                 {
                     var point = Map.GetPoint(x, y);

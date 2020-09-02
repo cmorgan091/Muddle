@@ -18,9 +18,8 @@
 
 <h1>Empty Map</h1>
 <p>A basic 9x5 map</p>
-<render-map Map="@(new MapBuilder(9, 5).Build())"></render-map>
-<pre><code>
-var map = new MapBuilder(9, 5)
+<render-map Map="@(new MapBuilder(9, 5).Build())" show-coordinates="true"></render-map>
+<pre><code class="language-csharp">var map = new MapBuilder(9, 5)
     .Build();
 </code></pre>
 
@@ -29,9 +28,8 @@ var map = new MapBuilder(9, 5)
 
 <h2>Single Path</h2>
 <p>A single path on an 9x5 map, with the path starting at point 1,2 and travelling East for 7 blocks</p>
-<render-map Map="@(new MapBuilder(9, 5).AddPath(1, 2, 7, Directions.East).Build())"></render-map>
-<pre><code>
-var map = new MapBuilder(9, 5)
+<render-map Map="@(new MapBuilder(9, 5).AddPath(1, 2, 7, Directions.East).Build())" show-coordinates="true"></render-map>
+<pre><code class="language-csharp">var map = new MapBuilder(9, 5)
     .AddPath(1, 2, 7, Directions.East)
     .Build();
 </code></pre>
@@ -41,9 +39,8 @@ var map = new MapBuilder(9, 5)
 <render-map Map="@(new MapBuilder(9, 5)
                      .AddPath(1, 2, 7, Directions.East)
                      .AddPath(4, 1, 3, Directions.South)
-                     .Build())"></render-map>
-<pre><code>
-var map = new MapBuilder(9, 5)
+                     .Build())" show-coordinates="true"></render-map>
+<pre><code class="language-csharp">var map = new MapBuilder(9, 5)
     .AddPath(1, 2, 7, Directions.East)
     .AddPath(4, 1, 3, Directions.South)
     .Build();
@@ -53,10 +50,9 @@ var map = new MapBuilder(9, 5)
 
 <p>A simple map shown like a fork</p>
 
-<render-map Map="@Model.ForkMap"></render-map>
+<render-map Map="@Model.ForkMap" show-coordinates="true"></render-map>
 
-<pre><code>
-var map = new MapBuilder(10, 5)
+<pre><code class="language-csharp">var map = new MapBuilder(10, 5)
     .AddPath(0, 2, 10, Directions.East)
     .AddPath(5, 0, 5, Directions.South)
     .AddPath(5, 0, 5, Directions.East)
@@ -69,10 +65,9 @@ var map = new MapBuilder(10, 5)
 
 <p>A map with paths that look like a letter C followed by a letter M</p>
 
-<render-map Map="@Model.CMMap"></render-map>
+<render-map Map="@Model.CMMap" show-coordinates="true"></render-map>
 
-<pre><code>
-var map = new MapBuilder(13, 7)
+<pre><code class="language-csharp">var map = new MapBuilder(13, 7)
     .AddPath(1, 1, 3, Directions.East)
     .AddPath(1, 1, 5, Directions.South)
     .AddPath(1, 5, 6, Directions.East)
@@ -93,9 +88,8 @@ var map = new MapBuilder(13, 7)
 <p>A single item on a map</p>
 <render-map Map="@(new MapBuilder(9, 5)
                      .AddBackgroundItem(1, 1)
-                     .Build())"></render-map>
-<pre><code>
-var map = new MapBuilder(9, 5)
+                     .Build())" show-coordinates="true"></render-map>
+<pre><code class="language-csharp">var map = new MapBuilder(9, 5)
     .AddBackgroundItem(1, 1)
     .Build()
 </code></pre>
@@ -108,9 +102,8 @@ var map = new MapBuilder(9, 5)
                      .AddPath(0,2,7,Directions.East)
                      .AddBackgroundItem(2, 3)
                      .AddBackgroundItem(5, 3)
-                     .Build())"></render-map>
-<pre><code>
-var map = new MapBuilder(9, 5)
+                     .Build())" show-coordinates="true"></render-map>
+<pre><code class="language-csharp">var map = new MapBuilder(9, 5)
     .AddBackgroundItem(1, 1)
     .AddBackgroundItem(3, 1)
     .AddPath(0, 2, 7, Directions.East)
