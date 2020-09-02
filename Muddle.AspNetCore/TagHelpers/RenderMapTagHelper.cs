@@ -16,6 +16,8 @@ namespace Muddle.AspNetCore.TagHelpers
         /// </summary>
         public bool ShowCoordinates { get; set; }
 
+        private string _imagePath = "_content/Muddle/muddle/{_imagePath}";
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var sb = new StringBuilder();
@@ -70,15 +72,15 @@ namespace Muddle.AspNetCore.TagHelpers
                         {
                             case Orientations.Vertical:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
-                                    : $"<img src='img/iconsets/default/path-vertical.png' alt='Path' class='icon'/>");
+                                    ? $"<img src='{_imagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='{_imagePath}path-vertical.png' alt='Path' class='icon'/>");
 
                                 break;
 
                             case Orientations.Horizontal:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='img/iconsets/default/path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
-                                    : $"<img src='img/iconsets/default/path-horizontal.png' alt='Path' class='icon'/>");
+                                    ? $"<img src='{_imagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='{_imagePath}path-horizontal.png' alt='Path' class='icon'/>");
                                 break;
 
                             case Orientations.Both:
@@ -87,13 +89,13 @@ namespace Muddle.AspNetCore.TagHelpers
                                 switch (junction.Type)
                                 {
                                     case Junction.JunctionTypes.Crossroad:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-crossroad.png' alt='Crossroad' class='icon'/>");
+                                        sb.Append($"<img src='{_imagePath}path-junction-crossroad.png' alt='Crossroad' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.TJunction:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' alt='T Junction' class='icon'/>");
+                                        sb.Append($"<img src='{_imagePath}path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' alt='T Junction' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.Righthand:
-                                        sb.Append($"<img src='img/iconsets/default/path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' alt='Corner' class='icon'/>");
+                                        sb.Append($"<img src='{_imagePath}path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' alt='Corner' class='icon'/>");
                                         break;
                                     default:
                                         throw new Exception($"Unknown junction type {junction.Type}");
@@ -112,11 +114,11 @@ namespace Muddle.AspNetCore.TagHelpers
                         if (point.BackgroundItems.Any())
                         {
                             var backgroundItem = point.BackgroundItems.Single();
-                            sb.Append($"<img src='img/iconsets/default/backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' alt='Background item' class='icon'/>");
+                            sb.Append($"<img src='{_imagePath}backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' alt='Background item' class='icon'/>");
                         }
                         else
                         {
-                            sb.Append($"<img src='img/iconsets/default/default.png' alt='Default background' class='icon'/>");
+                            sb.Append($"<img src='{_imagePath}default.png' alt='Default background' class='icon'/>");
                         }
                     }
 
