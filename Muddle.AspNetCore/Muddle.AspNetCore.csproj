@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Muddle.Domain\Muddle.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\muddle\css\" />
+    <Folder Include="wwwroot\muddle\js\" />
+  </ItemGroup>
+
 </Project>
