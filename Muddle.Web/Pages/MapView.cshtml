@@ -1,0 +1,15 @@
+﻿@page
+@using Muddle.Domain.Models
+@model MapModel
+@{
+    ViewData["Title"] = "Map Viewer";
+}
+
+<h1 class="display-4">Map Viewer</h1>
+<p>This page is used for the development of the Map Viewer</p>
+
+<div class="muddle-map-view">
+
+    <render-map Map="@(new MapBuilder(50, 20).Build())" show-coordinates="true"></render-map>
+
+</div>
