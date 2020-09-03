@@ -19,3 +19,22 @@ html {
     background-clip: initial;
     background-color: initial;
 }
+
+body {
+    /*background-color: #f5f5f5;*/
+}
+
+pre {
+    width: 100%;
+    padding: 0px;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    overflow: auto;
+}
+
+pre, code {
+    width: 100%;
+    background-color: #f5f5f5 !important;
+    /*border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;*/
+}

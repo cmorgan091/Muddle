@@ -31,6 +31,9 @@
                             <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Installation">Installation</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Map">Maps</a>
                         </li>
                         @*<li class="nav-item">
@@ -49,13 +52,13 @@
                 @RenderSection("Masthead", required: false)
             </div>
         </main>
-        <div class="container masthead-followup">
+        <div class="container pb-5 masthead-followup">
             @RenderBody()
         </div>
     }
     else
     {
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5">
             <div class="container">
                 @RenderBody()
             </div>
