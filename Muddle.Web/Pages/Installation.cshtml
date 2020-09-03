@@ -1,0 +1,56 @@
+﻿@page
+@using Muddle.Domain.Models
+@model MapModel
+@{
+    ViewData["Title"] = "Installation";
+}
+
+<h1 class="display-4">Installation</h1>
+<p>This page guides you through how to install Muddle in to your ASP.Net Core web project</p>
+
+<h2>Nuget package</h2>
+
+Firstly if your environment does not already have Nuget, please installing it <a href="https://docs.microsoft.com/en-gb/nuget/install-nuget-client-tools">following this guide</a>. Then install Muddle using the following command in the package manager:
+
+<pre><code class="language-csharp">PM> Install-Package Muddle</code></pre>
+
+<h2>Layout changes (CSS)</h2>
+
+The Muddle cascading style sheet (CSS) should be added to your _Layout.cs page using the following tag added to the <code>&lt;head&gt;</code>
+
+<pre><code class="language-html">&lt;link rel="stylesheet" href="~/muddle/css/muddle.css" /&gt;</code></pre>
+
+<h2>Import changes (Taghelpers)</h2>
+
+The Muddle tag helpers need to be included in the _ViewImports.cshtml page by adding the following line:
+
+<pre><code class="language-csharp">@@addTagHelper *, Muddle.Web</code></pre>
+
+<h2>Startup changes</h2>
+
+Finally you need to add Muddle to the WebHost services, by editing Startup.cs and editing the ConfigureServices(IServiceCollection services) method
+
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages();
+    services.AddMuddle();
+}
+</code></pre>
+
+Adding the <code class="language-csharp">services.AddMuddle();</code> line
+
+<h2>Testing the install is complete</h2>
+
+To confirm that Muddle has been set up completely, add the following code onto a page (cshmtml fle) with the following at the top:
+
+<pre><code class="language-csharp">@@using Muddle.Domain.Models</code></pre>
+
+and then in the html area add:
+
+<pre><code class="language-csharp">&lt;render-map Map="@@(new MapBuilder(9, 5).Build())" show-coordinates="true" /&gt;</code></pre>
+
+and on the website you should see the following:
+
+<render-map Map="@(new MapBuilder(9, 5).Build())" show-coordinates="true" />
+
+Congratulations, you are now ready to use Muddle on your site!
