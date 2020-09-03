@@ -38,3 +38,19 @@ Finally you need to add Muddle to the WebHost services, by editing Startup.cs an
 </code></pre>
 
 Adding the <code class="language-csharp">services.AddMuddle();</code> line
+
+<h2>Testing the install is complete</h2>
+
+To confirm that Muddle has been set up completely, add the following code onto a page (cshmtml fle) with the following at the top:
+
+<pre><code class="language-csharp">@@using Muddle.Domain.Models</code></pre>
+
+and then in the html area add:
+
+<pre><code class="language-csharp">&lt;render-map Map="@@(new MapBuilder(9, 5).Build())" show-coordinates="true" /&gt;</code></pre>
+
+and on the website you should see the following:
+
+<render-map Map="@(new MapBuilder(9, 5).Build())" show-coordinates="true" />
+
+Congratulations, you are now ready to use Muddle on your site!
