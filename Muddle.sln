@@ -18,8 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5ECB7442-2B3C-48F8-99D8-D88ED8768D67}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
 		Build\muddle.props = Build\muddle.props
+		.github\workflows\pipeline-publish.yml = .github\workflows\pipeline-publish.yml
+		.github\workflows\pipeline-test.yml = .github\workflows\pipeline-test.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muddle.AspNetCore", "Muddle.AspNetCore\Muddle.AspNetCore.csproj", "{084D286F-377A-4CC6-95E2-495CD056C67B}"

@@ -20,8 +20,10 @@
                 </p>
 
                 <div class="d-flex flex-column flex-md-row">
+                    <a asp-page="/Installation" class="btn btn-lg btn-outline-primary mb-3">Installation</a>
+
                     <a asp-page="/Map" class="btn btn-lg btn-primary mb-3 mr-md-3">Get started</a>
-                    @*<a href="#" class="btn btn-lg btn-outline-secondary mb-3">Download</a>*@
+
                 </div>
                 <p class="text-muted mb-0">
                     Currently <img src="https://img.shields.io/badge/version-@(Assembly.GetEntryAssembly().GetName().Version.ToString(3))-green"/>
