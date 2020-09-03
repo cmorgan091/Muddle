@@ -6,3 +6,8 @@ table.muddle-map > tbody > tr > td > img.icon {
     height: 32px;
     width: 32px;
 }
+
+div.muddle-map-view {
+    overflow: scroll;
+    max-height: 400px;
+}
