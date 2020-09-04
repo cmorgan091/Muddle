@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Muddle.AspNetCore;
+using Muddle.Domain.Models;
 
 namespace Muddle.Web
 {
@@ -25,8 +26,10 @@ namespace Muddle.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
 
             services.AddMuddle();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +56,23 @@ namespace Muddle.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
+
+
+            // add a map
+
+            var gamesMaster = app.ApplicationServices.GetService<IGamesMaster>();
+
+            var builder = new MapBuilder(30, 15);
+
+            builder.Named("My first map");
+            builder.AddPath(1, 1, Directions.East, 5);
+            builder.AddPath(3, 1, Directions.South, 5);
+            builder.AddPath(3, 5, Directions.East, 5);
+            builder.AddStart(2, 1);
+            builder.AddEnd(5, 5);
+            gamesMaster.AddMapBuilder(builder);
         }
     }
 }

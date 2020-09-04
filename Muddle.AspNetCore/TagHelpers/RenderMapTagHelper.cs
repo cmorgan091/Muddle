@@ -22,7 +22,7 @@ namespace Muddle.AspNetCore.TagHelpers
         {
             var sb = new StringBuilder();
 
-            sb.Append($@"<table class='muddle-map'>");
+            sb.Append($@"<table class='muddle-map' id='muddle-map'>");
 
             if (ShowCoordinates)
             {
@@ -64,7 +64,7 @@ namespace Muddle.AspNetCore.TagHelpers
                 {
                     var point = Map.GetPoint(x, y);
 
-                    sb.Append("<td class='m-0 p-0'>");
+                    sb.Append("<td class='m-0 p-0 muddle-map-cell'>");
 
                     if (point.HasPath)
                     {

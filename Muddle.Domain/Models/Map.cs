@@ -28,6 +28,7 @@ namespace Muddle.Domain.Models
 
             Paths = new List<Path>();
             BackgroundItems = new List<BackgroundItem>();
+            PointOfInterests = new List<PointOfInterest>();
         }
 
         private int Width { get; set; }
@@ -41,10 +42,16 @@ namespace Muddle.Domain.Models
 
         private List<Path> Paths { get; }
         private List<BackgroundItem> BackgroundItems { get; }
+        private List<PointOfInterest> PointOfInterests { get; }
 
         public void AddPath(Path path)
         {
             Paths.Add(path);
+        }
+
+        public void AddPointOfInterest(PointOfInterest pointOfInterest)
+        {
+            PointOfInterests.Add(pointOfInterest);
         }
 
         public void AddBackgroundItem(BackgroundItem backgroundItem)
@@ -55,6 +62,18 @@ namespace Muddle.Domain.Models
         public void AddBackgroundItem(IEnumerable<BackgroundItem> backgroundItems)
         {
             BackgroundItems.AddRange(backgroundItems);
+        }
+
+        public Point GetStartPoint()
+        {
+            var startPoi = PointOfInterests.FirstOrDefault(x => x.Type == PointOfInterestTypes.Start);
+
+            if (startPoi == null)
+            {
+                throw new Exception($"This map does not include a start point");
+            }
+
+            return GetPoint(startPoi.X, startPoi.Y);
         }
 
         public Point GetPoint(int x, int y)
@@ -100,7 +119,28 @@ namespace Muddle.Domain.Models
                 && i.TopLeftY <= y
                 && (i.TopLeftY + i.Height - 1) >= y));
 
+            // find all points of interest
+            point.AddPointOfInterest(PointOfInterests.Where(i =>
+                i.X == x
+                && i.Y == y));
+
             return point;
+        }
+
+        public Point GetRelativePoint(Point point, Directions direction, int positions = 1)
+        {
+            switch (direction)
+            {
+                case Directions.North:
+                    return GetPoint(point.X, point.Y - positions);
+                case Directions.South:
+                    return GetPoint(point.X, point.Y + positions);
+                case Directions.West:
+                    return GetPoint(point.X - positions, point.Y);
+                case Directions.East:
+                    return GetPoint(point.X + positions, point.Y);
+            }
+            throw new Exception($"Unknown direction {direction}");
         }
 
         public string ToDebugString()
@@ -129,6 +169,20 @@ namespace Muddle.Domain.Models
             }
 
             return sb.ToString();
+        }
+
+        public void Validate()
+        {
+            // all points of interest should be on a path
+            foreach (var pointOfInterest in PointOfInterests)
+            {
+                var point = GetPoint(pointOfInterest.X, pointOfInterest.Y);
+
+                if (!point.HasPath)
+                {
+                    throw new Exception($"{nameof(PointOfInterest)} of type {pointOfInterest.Type} at point {point.X}, {point.Y} does not have a path beneath it");
+                }
+            }
         }
     }
 }

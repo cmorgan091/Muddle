@@ -52,6 +52,23 @@ namespace Muddle.Domain.Models
 
         public List<PathIntersect> PathIntersects { get; set; } = new List<PathIntersect>();
         public List<BackgroundItem> BackgroundItems { get; set; } = new List<BackgroundItem>();
+        public List<PointOfInterest> PointOfInterests { get; set; } = new List<PointOfInterest>();
+
+        public bool PathExtendsNorth => PathIntersects.Any(x =>
+            (x.Path.Direction == Directions.North && !x.IsPathEnd) ||
+            (x.Path.Direction == Directions.South && !x.IsPathStart));
+
+        public bool PathExtendsSouth => PathIntersects.Any(x =>
+            (x.Path.Direction == Directions.South && !x.IsPathEnd) ||
+            (x.Path.Direction == Directions.North && !x.IsPathStart));
+
+        public bool PathExtendsEast => PathIntersects.Any(x =>
+            (x.Path.Direction == Directions.East && !x.IsPathEnd) ||
+            (x.Path.Direction == Directions.West && !x.IsPathStart));
+
+        public bool PathExtendsWest => PathIntersects.Any(x =>
+            (x.Path.Direction == Directions.West && !x.IsPathEnd) ||
+            (x.Path.Direction == Directions.East && !x.IsPathStart));
 
         public Directions? PathTerminusDirection
         {
@@ -78,6 +95,16 @@ namespace Muddle.Domain.Models
         public void AddPathIntersect(PathIntersect pathIntersect)
         {
             PathIntersects.Add(pathIntersect);
+        }
+
+        public void AddPointOfInterest(PointOfInterest pointOfInterest)
+        {
+            PointOfInterests.Add(pointOfInterest);
+        }
+
+        public void AddPointOfInterest(IEnumerable<PointOfInterest> pointOfInterests)
+        {
+            PointOfInterests.AddRange(pointOfInterests);
         }
 
         public void AddBackgroundItem(BackgroundItem backgroundItem)
