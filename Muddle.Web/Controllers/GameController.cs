@@ -28,5 +28,14 @@ namespace Muddle.Web.Controllers
 
             return View(model);
         }
+
+        public IActionResult Move(Guid gameId, Directions direction)
+        {
+            var game = _gamesMaster.Games.First(x => x.GameId == gameId);
+
+            game.Player.Move(direction);
+
+            return RedirectToAction("Index", new {GameId = game.GameId});
+        }
     }
 }

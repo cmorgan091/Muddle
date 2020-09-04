@@ -29,12 +29,12 @@ else
 
 @if (Model.GamesMaster.Games.Any())
 {
-    <ul>
-        @foreach (var game in Model.GamesMaster.Games)
-        {
-            <li>@game.GameId</li>
-        }
-    </ul>
+<ul>
+    @foreach (var game in Model.GamesMaster.Games)
+    {
+        <li>@game.GameId - <a asp-controller="Game" asp-action="Index" asp-route-gameid="@game.GameId">Enter Game</a></li>
+    }
+</ul>
 }
 else
 {

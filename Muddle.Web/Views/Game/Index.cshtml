@@ -11,3 +11,28 @@
     <render-map Map="@Model.Game.Map" show-coordinates="true"></render-map>
 
 </div>
+
+@{
+    var player = Model.Game.Player;
+}
+
+<h2>Controls</h2>
+<ul>
+    <li>Position: @player.X, @player.Y</li>
+    <li>At Start: @player.IsAtStart</li>
+    <li>At End: @player.IsAtEnd</li>
+
+    @foreach (var direction in Enum.GetValues(typeof(Directions)).Cast<Directions>())
+    {
+        <li>
+            @if (player.CanMove(direction))
+            {
+                <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction">Move @direction</a>
+            }
+            else
+            {
+                <span class="text-muted">Can't move @direction</span>
+            }
+        </li>
+    }
+</ul>
