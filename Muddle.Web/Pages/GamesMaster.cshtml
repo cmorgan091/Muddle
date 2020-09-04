@@ -7,6 +7,12 @@
 <h1 class="display-4">Games Master</h1>
 <p>This page is used for the development of the Games Master</p>
 
+<h2>Server Statistics</h2>
+
+<ul>
+    <li>Memory Used: @(System.Diagnostics.Process.GetCurrentProcess().PrivateMemorySize64 / 1000 / 1000)MB</li>
+</ul>
+
 <h2>Maps available:</h2>
 
 @if (Model.GamesMaster.MapBuilders.Any())
@@ -15,7 +21,7 @@
         @for (var index = 0; index < Model.GamesMaster.MapBuilders.Count; index++)
         {
             var mapBuilder = Model.GamesMaster.MapBuilders[index];
-            <li>@mapBuilder.Name - <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="0">Create new Game</a></li>
+            <li>@mapBuilder.Name <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="0" class="btn btn-success btn-sm">Create new Game</a></li>
         }
     </ul>
 }
@@ -32,7 +38,7 @@ else
 <ul>
     @foreach (var game in Model.GamesMaster.Games)
     {
-        <li>@game.GameId - <a asp-controller="Game" asp-action="Index" asp-route-gameid="@game.GameId">Enter Game</a></li>
+        <li>@game.GameId <a asp-controller="Game" asp-action="Index" asp-route-gameid="@game.GameId" class="btn btn-warning btn-sm">Enter Game</a></li>
     }
 </ul>
 }
@@ -40,3 +46,5 @@ else
 {
     <div class="alert alert-warning">There are no games running on the Games Master</div>
 }
+
+<a asp-controller="ManageGame" asp-action="TerminateAllGames" class="btn btn-danger btn-sm">Terminate all games</a>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Muddle.Domain.Models;
 
 namespace Muddle.Web.Controllers
@@ -20,6 +21,13 @@ namespace Muddle.Web.Controllers
             var game = _gamesMaster.CreateNewGame(mapBuilder);
 
             return RedirectToAction("Index", "Game", new {gameId = game.GameId});
+        }
+
+        public IActionResult TerminateAllGames()
+        {
+            _gamesMaster.Games.Clear();
+
+            return RedirectToPage("GamesMaster");
         }
     }
 }
