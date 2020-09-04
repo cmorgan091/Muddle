@@ -30,8 +30,28 @@
             return AddBackgroundItem(new BackgroundItem(topLeftX, topLeftY));
         }
 
+        private MapBuilder AddPointOfInterest(int x, int y, PointOfInterestTypes type)
+        {
+            _map.AddPointOfInterest(new PointOfInterest(x, y, type));
+
+            return this;
+        }
+
+        public MapBuilder AddStart(int x, int y)
+        {
+            return AddPointOfInterest(x, y, PointOfInterestTypes.Start);
+        }
+
+        public MapBuilder AddEnd(int x, int y)
+        {
+            return AddPointOfInterest(x, y, PointOfInterestTypes.End);
+        }
+
+
         public Map Build()
         {
+            _map.Validate();
+
             return _map;
         }
     }
