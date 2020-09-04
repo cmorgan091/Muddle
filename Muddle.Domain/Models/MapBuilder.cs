@@ -3,10 +3,18 @@
     public class MapBuilder
     {
         private Map _map;
+        public string Name { get; private set; }
 
         public MapBuilder(int width, int height)
         {
             _map = new Map(width, height);
+        }
+
+        public MapBuilder Named(string name)
+        {
+            Name = name;
+
+            return this;
         }
 
         public MapBuilder AddPath(int startX, int startY, Directions direction, int length)

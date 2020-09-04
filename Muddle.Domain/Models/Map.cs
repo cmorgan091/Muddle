@@ -64,6 +64,18 @@ namespace Muddle.Domain.Models
             BackgroundItems.AddRange(backgroundItems);
         }
 
+        public Point GetStartPoint()
+        {
+            var startPoi = PointOfInterests.FirstOrDefault(x => x.Type == PointOfInterestTypes.Start);
+
+            if (startPoi == null)
+            {
+                throw new Exception($"This map does not include a start point");
+            }
+
+            return GetPoint(startPoi.X, startPoi.Y);
+        }
+
         public Point GetPoint(int x, int y)
         {
             if (x < MinX)
@@ -113,6 +125,22 @@ namespace Muddle.Domain.Models
                 && i.Y == y));
 
             return point;
+        }
+
+        public Point GetRelativePoint(Point point, Directions direction, int positions = 1)
+        {
+            switch (direction)
+            {
+                case Directions.North:
+                    return GetPoint(point.X, point.Y - positions);
+                case Directions.South:
+                    return GetPoint(point.X, point.Y + positions);
+                case Directions.West:
+                    return GetPoint(point.X - positions, point.Y);
+                case Directions.East:
+                    return GetPoint(point.X + positions, point.Y);
+            }
+            throw new Exception($"Unknown direction {direction}");
         }
 
         public string ToDebugString()
