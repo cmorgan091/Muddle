@@ -11,6 +11,7 @@ namespace Muddle.Domain.Models
             GameId = Guid.NewGuid();
             Map = map;
             Player = player;
+            StartedDateTime = DateTime.Now;
 
             Player.AddToMap(Map, Map.GetStartPoint());
         }
@@ -20,5 +21,9 @@ namespace Muddle.Domain.Models
         public Map Map { get; }
 
         public Player Player { get; }
+
+        public DateTime StartedDateTime { get; }
+
+        public DateTime LastUpdatedDateTime => Player.LastMoveDateTime;
     }
 }

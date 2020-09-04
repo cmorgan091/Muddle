@@ -16,93 +16,83 @@
     var player = Model.Game.Player;
 }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Controls</h2>
-        <ul>
-            @foreach (var direction in Enum.GetValues(typeof(Directions)).Cast<Directions>())
-            {
-                <li>
-                    @if (player.CanMove(direction))
+@if (player.IsAtEnd)
+{
+    <div class="alert alert-success">Congratulations, you have completed the map!</div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Controls</h2>
+            <ul>
+                @foreach (var direction in Enum.GetValues(typeof(Directions)).Cast<Directions>())
+                {
+                    <li>
+                        @if (player.CanMove(direction))
+                        {
+                            <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction">Move @direction</a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Can't move @direction</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Controls v2</h2>
+
+            @functions {
+
+                private async Task<string> RenderControlDirectionAsync(Directions direction)
+                {
+                    if (Model.Game.Player.CanMove(direction))
                     {
-                        <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction">Move @direction</a>
+                        <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction" class="btn btn-primary btn-sm">@direction</a>
                     }
                     else
                     {
-                        <span class="text-muted">Can't move @direction</span>
+                        <button type="button" class="btn btn-sm btn-grey" disabled>@direction</button>
                     }
-                </li>
-            }
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h2>Controls v2</h2>
-
-        @functions {
-
-            private async Task<string> RenderControlDirectionAsync(Directions direction)
-            {
-                if (Model.Game.Player.CanMove(direction))
-                {
-                    <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction" class="btn btn-primary btn-sm">@direction</a>
+                    return string.Empty;
                 }
-                else
-                {
-                    <button type="button" class="btn btn-sm btn-grey" disabled>@direction</button>
-                }
-                return string.Empty;
+
             }
 
-        }
-
-        <div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    @await RenderControlDirectionAsync(Directions.North)
+            <div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        @await RenderControlDirectionAsync(Directions.North)
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    @await RenderControlDirectionAsync(Directions.West)
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        @await RenderControlDirectionAsync(Directions.West)
+                    </div>
+                    <div class="col-md-6 text-center">
+                        @await RenderControlDirectionAsync(Directions.East)
+                    </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    @await RenderControlDirectionAsync(Directions.East)
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    @await RenderControlDirectionAsync(Directions.South)
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        @await RenderControlDirectionAsync(Directions.South)
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <h2>State</h2>
+            <ul>
+                <li>Position: @player.X, @player.Y</li>
+                <li>At Start: @player.IsAtStart</li>
+                <li>At End: @player.IsAtEnd</li>
 
-        <ul>
-            @foreach (var direction in Enum.GetValues(typeof(Directions)).Cast<Directions>())
-            {
-                <li>
-                    @if (player.CanMove(direction))
-                    {
-                        <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction">Move @direction</a>
-                    }
-                    else
-                    {
-                        <span class="text-muted">Can't move @direction</span>
-                    }
-                </li>
-            }
-        </ul>
+            </ul>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>State</h2>
-        <ul>
-            <li>Position: @player.X, @player.Y</li>
-            <li>At Start: @player.IsAtStart</li>
-            <li>At End: @player.IsAtEnd</li>
-
-        </ul>
-    </div>
-</div>
-
+}
 <script>
     var cell = document.getElementById("muddle-map").rows[@(player.Y + 1)].cells[@(player.X + 1)];
     cell.innerHTML += '<img src="/muddle/img/iconsets/default/player.png" class="icon muddle-map-player"/>';

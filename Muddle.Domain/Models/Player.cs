@@ -7,6 +7,8 @@ namespace Muddle.Domain.Models
     {
         private Point _currentPoint;
 
+        public DateTime LastMoveDateTime { get; private set; }
+
         public int X => _currentPoint.X;
         public int Y => _currentPoint.Y;
 
@@ -50,6 +52,7 @@ namespace Muddle.Domain.Models
                 var newPoint = Map.GetRelativePoint(_currentPoint, direction);
 
                 _currentPoint = newPoint;
+                LastMoveDateTime = DateTime.Now;
             }
             else
             {
