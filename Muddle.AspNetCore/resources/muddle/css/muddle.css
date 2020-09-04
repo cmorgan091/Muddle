@@ -21,3 +21,9 @@ div.muddle-map-view {
     left: 0;
     z-index: 100;
 }
+.muddle-map-point-of-interest {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}

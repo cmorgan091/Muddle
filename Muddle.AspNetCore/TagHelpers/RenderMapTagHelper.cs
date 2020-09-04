@@ -122,6 +122,12 @@ namespace Muddle.AspNetCore.TagHelpers
                         }
                     }
 
+                    if (point.PointOfInterests.Any())
+                    {
+                        var poi = point.PointOfInterests.Single();
+                        sb.Append($"<img src='{_imagePath}{poi.Type.ToString().ToLower()}.png' alt='POI: {poi.Type}' class='icon muddle-map-point-of-interest'/>");
+                    }
+
                     sb.Append("</td>");
                 }
 

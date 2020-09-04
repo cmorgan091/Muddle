@@ -64,7 +64,7 @@ namespace Muddle.Web
 
             var gamesMaster = app.ApplicationServices.GetService<IGamesMaster>();
 
-            var builder = new MapBuilder(30, 15);
+            var builder = new MapBuilder(10, 7);
 
             builder.Named("My first map");
             builder.AddPath(1, 1, Directions.East, 5);

@@ -10,6 +10,21 @@
 
 <div class="muddle-map-view">
 
-    <render-map Map="@(new MapBuilder(50, 20).Build())" show-coordinates="true"></render-map>
+    <render-map Map="@(new MapBuilder(10, 10)
+                         .Named("Maze")
+                         .AddStart(5, 5)
+                         .AddPath(4, 5, Directions.East, 3)
+                         .AddPath(6, 3, Directions.South, 4)
+                         .AddPath(3, 3, Directions.East, 6)
+                         .AddPath(5, 3, Directions.South, 2)
+                         .AddPath(7, 3, Directions.North, 2)
+                         .AddPath(5, 2, Directions.East, 5)
+                         .AddPath(9, 0, Directions.South, 5)
+                         .AddPath(8, 3, Directions.South, 5)
+                         .AddPath(9, 7, Directions.West, 5)
+                         .AddPath(5, 7, Directions.North, 2)
+                         .AddPath(5, 6, Directions.West, 4)
+                         .AddPath(3, 1, Directions.South, 5)
+                         .Build())" show-coordinates="true"></render-map>
 
 </div>
