@@ -1,0 +1,13 @@
+﻿@using Muddle.Domain.Models
+@model Muddle.Web.Models.GameModels.GameIndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Game @Model.Game.GameId</h1>
+
+<div class="muddle-map-view">
+
+    <render-map Map="@Model.Game.Map" show-coordinates="true"></render-map>
+
+</div>

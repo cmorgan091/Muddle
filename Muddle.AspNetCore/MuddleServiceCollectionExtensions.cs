@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Muddle.Domain.Models;
 
 namespace Muddle.AspNetCore
 {
@@ -7,6 +8,7 @@ namespace Muddle.AspNetCore
         public static void AddMuddle(this IServiceCollection services)
         {
             services.ConfigureOptions(typeof(MuddleConfigureOptions));
+            services.AddSingleton<IGamesMaster, GamesMaster>();
         }
     }
 }

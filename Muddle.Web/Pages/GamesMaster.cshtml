@@ -1,0 +1,42 @@
+﻿@page
+@model GamesMasterModel
+@{
+    ViewData["Title"] = "Games Master";
+}
+
+<h1 class="display-4">Games Master</h1>
+<p>This page is used for the development of the Games Master</p>
+
+<h2>Maps available:</h2>
+
+@if (Model.GamesMaster.MapBuilders.Any())
+{
+    <ul>
+        @for (var index = 0; index < Model.GamesMaster.MapBuilders.Count; index++)
+        {
+            var mapBuilder = Model.GamesMaster.MapBuilders[index];
+            <li>@mapBuilder.Name - <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="0">Create new Game</a></li>
+        }
+    </ul>
+}
+else
+{
+    <div class="alert alert-warning">There are no maps loaded into the Games Master</div>
+}
+
+
+<h2>Running Games:</h2>
+
+@if (Model.GamesMaster.Games.Any())
+{
+    <ul>
+        @foreach (var game in Model.GamesMaster.Games)
+        {
+            <li>@game.GameId</li>
+        }
+    </ul>
+}
+else
+{
+    <div class="alert alert-warning">There are no games running on the Games Master</div>
+}
