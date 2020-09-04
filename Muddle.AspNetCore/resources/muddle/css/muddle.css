@@ -11,3 +11,13 @@ div.muddle-map-view {
     overflow: scroll;
     max-height: 400px;
 }
+
+.muddle-map-cell {
+    position: relative;
+}
+.muddle-map-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}

@@ -36,3 +36,10 @@
         </li>
     }
 </ul>
+
+@*<img src="~/muddle/img/iconsets/default/player.png"/>*@
+
+<script>
+    var cell = document.getElementById("muddle-map").rows[@(player.Y + 1)].cells[@(player.X + 1)];
+    cell.innerHTML += '<img src="/muddle/img/iconsets/default/player.png" class="icon muddle-map-player"/>';
+</script>
