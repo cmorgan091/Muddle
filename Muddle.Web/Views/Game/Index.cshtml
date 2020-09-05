@@ -24,24 +24,6 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <h2>Controls</h2>
-            <ul>
-                @foreach (var direction in Enum.GetValues(typeof(Directions)).Cast<Directions>())
-                {
-                    <li>
-                        @if (player.CanMove(direction))
-                        {
-                            <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction">Move @direction</a>
-                        }
-                        else
-                        {
-                            <span class="text-muted">Can't move @direction</span>
-                        }
-                    </li>
-                }
-            </ul>
-        </div>
-        <div class="col-md-4">
             <h2>Controls v2</h2>
 
             @functions {
@@ -86,8 +68,8 @@ else
             <h2>State</h2>
             <ul>
                 <li>Position: @player.X, @player.Y</li>
-                <li>At Start: @player.IsAtStart</li>
-                <li>At End: @player.IsAtEnd</li>
+                <li>Active Time: @Model.Game.ActiveTimeSpan</li>
+                <li>Moves: @player.MovesMade</li>
 
             </ul>
         </div>

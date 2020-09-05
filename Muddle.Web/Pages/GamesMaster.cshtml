@@ -17,13 +17,30 @@
 
 @if (Model.GamesMaster.MapBuilders.Any())
 {
-    <ul>
-        @for (var index = 0; index < Model.GamesMaster.MapBuilders.Count; index++)
-        {
-            var mapBuilder = Model.GamesMaster.MapBuilders[index];
-            <li>@mapBuilder.Name <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="0" class="btn btn-success btn-sm">Create new Game</a></li>
-        }
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Map Size</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (var index = 0; index < Model.GamesMaster.MapBuilders.Count; index++)
+            {
+                var mapBuilder = Model.GamesMaster.MapBuilders[index];
+
+                <tr>
+                    <td>@index</td>
+                    <td>@mapBuilder.Name</td>
+                    <td>@mapBuilder.Width x @mapBuilder.Height</td>
+                    <td><a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="@index" class="btn btn-success btn-sm">Create new Game</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {
@@ -35,12 +52,33 @@ else
 
 @if (Model.GamesMaster.Games.Any())
 {
-<ul>
-    @foreach (var game in Model.GamesMaster.Games)
-    {
-        <li>@game.GameId <a asp-controller="Game" asp-action="Index" asp-route-gameid="@game.GameId" class="btn btn-warning btn-sm">Enter Game</a></li>
-    }
-</ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>State</th>
+                <th>Started Date Time</th>
+                <th>Active Time</th>
+                <th>Last Move Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var game in Model.GamesMaster.Games)
+            {
+                <tr>
+                    <td>@game.GameId</td>
+                    <td>@game.State</td>
+                    <td>@game.StartedDateTime</td>
+                    <td>@game.ActiveTimeSpan</td>
+                    <td>@game.LastMoveTimeSpan</td>
+                    <td><a asp-controller="Game" asp-action="Index" asp-route-gameid="@game.GameId" class="btn btn-warning btn-sm">Enter Game</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {

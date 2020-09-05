@@ -35,6 +35,11 @@ namespace Muddle.Web.Controllers
 
             game.Player.Move(direction);
 
+            if (game.Player.IsAtEnd)
+            {
+                game.SetState(GameStates.Completed);
+            }
+
             return RedirectToAction("Index", new {GameId = game.GameId});
         }
     }

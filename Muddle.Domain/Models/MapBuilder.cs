@@ -4,6 +4,8 @@
     {
         private Map _map;
         public string Name { get; private set; }
+        public int Width => _map.Width;
+        public int Height => _map.Height;
 
         public MapBuilder(int width, int height)
         {
