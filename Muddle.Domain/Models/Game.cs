@@ -24,6 +24,26 @@ namespace Muddle.Domain.Models
 
         public DateTime StartedDateTime { get; }
 
-        public DateTime LastUpdatedDateTime => Player.LastMoveDateTime;
+        public DateTime LastUpdatedDateTime => Player.LastMoveDateTime == DateTime.MinValue ? StartedDateTime : Player.LastMoveDateTime;
+
+        public DateTime StateChangeDateTime { get; private set; }
+
+        public GameStates State { get; private set; }
+
+        public void SetState(GameStates state)
+        {
+            State = state;
+            StateChangeDateTime = DateTime.Now;
+        }
+
+        public TimeSpan ActiveTimeSpan => LastUpdatedDateTime - StartedDateTime;
+
+        public TimeSpan LastMoveTimeSpan => DateTime.Now - LastUpdatedDateTime;
+    }
+
+    public enum GameStates
+    {
+        Started,
+        Completed,
     }
 }

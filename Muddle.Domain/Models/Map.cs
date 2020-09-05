@@ -31,9 +31,9 @@ namespace Muddle.Domain.Models
             PointOfInterests = new List<PointOfInterest>();
         }
 
-        private int Width { get; set; }
+        public int Width { get; private set; }
 
-        private int Height { get; set; }
+        public int Height { get; private set; }
 
         public int MinX => 0;
         public int MinY => 0;

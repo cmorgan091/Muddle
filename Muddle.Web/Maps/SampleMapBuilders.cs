@@ -6,7 +6,7 @@ namespace Muddle.Web.Maps
     {
         public static MapBuilder SimpleMapBuilder()
         {
-            var builder = new MapBuilder(10, 7);
+            var builder = new MapBuilder(8, 7);
 
             builder.Named("Simple Starter")
                 .AddPath(1, 1, Directions.East, 5)

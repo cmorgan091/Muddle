@@ -22,6 +22,8 @@ namespace Muddle.Domain.Models
         public bool CanMoveSouth => CanMove(Directions.South);
         public bool CanMoveWest => CanMove(Directions.West);
 
+        public int MovesMade { get; private set; }
+
         public bool CanMove(Directions direction)
         {
             switch (direction)
@@ -53,6 +55,7 @@ namespace Muddle.Domain.Models
 
                 _currentPoint = newPoint;
                 LastMoveDateTime = DateTime.Now;
+                MovesMade++;
             }
             else
             {
