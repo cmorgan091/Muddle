@@ -21,7 +21,7 @@
         @for (var index = 0; index < Model.GamesMaster.MapBuilders.Count; index++)
         {
             var mapBuilder = Model.GamesMaster.MapBuilders[index];
-            <li>@mapBuilder.Name <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="0" class="btn btn-success btn-sm">Create new Game</a></li>
+            <li>@mapBuilder.Name <a asp-controller="ManageGame" asp-action="CreateNewGame" asp-route-map="@index" class="btn btn-success btn-sm">Create new Game</a></li>
         }
     </ul>
 }

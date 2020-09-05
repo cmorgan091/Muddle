@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Muddle.AspNetCore;
 using Muddle.Domain.Models;
+using Muddle.Web.Maps;
 
 namespace Muddle.Web
 {
@@ -64,15 +65,8 @@ namespace Muddle.Web
 
             var gamesMaster = app.ApplicationServices.GetService<IGamesMaster>();
 
-            var builder = new MapBuilder(10, 7);
-
-            builder.Named("My first map");
-            builder.AddPath(1, 1, Directions.East, 5);
-            builder.AddPath(3, 1, Directions.South, 5);
-            builder.AddPath(3, 5, Directions.East, 5);
-            builder.AddStart(2, 1);
-            builder.AddEnd(5, 5);
-            gamesMaster.AddMapBuilder(builder);
+            gamesMaster.AddMapBuilder(SampleMapBuilders.SimpleMapBuilder());
+            gamesMaster.AddMapBuilder(SampleMapBuilders.MazeMapBuilder());
         }
     }
 }
