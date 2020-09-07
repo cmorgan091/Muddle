@@ -8,21 +8,21 @@ namespace Muddle.Domain.Models
     /// </summary>
     public class Junction
     {
-        private Point _point;
+        private PointDetail _pointDetail;
 
         public JunctionTypes Type { get; }
 
         public Directions FromDirection { get; }
 
-        public Junction(Point point)
+        public Junction(PointDetail pointDetail)
         {
-            Guard.NotNull(point, nameof(point));
+            Guard.NotNull(pointDetail, nameof(pointDetail));
 
-            _point = point;
+            _pointDetail = pointDetail;
 
-            if (_point.PathIntersects.Count != 2)
+            if (_pointDetail.PathIntersects.Count != 2)
             {
-                throw new Exception($"A junction can only be created on a point which has 2 path intersections, but the point {_point} has {_point.PathIntersects.Count}");
+                throw new Exception($"A junction can only be created on a point which has 2 path intersections, but the point {_pointDetail} has {_pointDetail.PathIntersects.Count}");
             }
 
             var details = GetJunctionDetails();
@@ -34,8 +34,8 @@ namespace Muddle.Domain.Models
         private Tuple<JunctionTypes, Directions> GetJunctionDetails()
         {
             // its a valid junction, now we need to work out what type
-            var pathIntersectHorizontal = _point.PathIntersects.First(x => x.Path.Orientation == Orientations.Horizontal);
-            var pathIntersectVertical = _point.PathIntersects.First(x => x.Path.Orientation == Orientations.Vertical);
+            var pathIntersectHorizontal = _pointDetail.PathIntersects.First(x => x.Path.Orientation == Orientations.Horizontal);
+            var pathIntersectVertical = _pointDetail.PathIntersects.First(x => x.Path.Orientation == Orientations.Vertical);
 
             var extendsEast = Convert.ToInt32(pathIntersectHorizontal.Path.Direction == Directions.East
                 ? pathIntersectHorizontal.Position < pathIntersectHorizontal.Path.Length - 1

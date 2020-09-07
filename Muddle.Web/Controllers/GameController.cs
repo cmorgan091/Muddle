@@ -33,7 +33,9 @@ namespace Muddle.Web.Controllers
         {
             var game = _gamesMaster.Games.First(x => x.GameId == gameId);
 
-            game.Player.Move(direction);
+            var newPoint = game.Player.Move(direction);
+
+            game.Map.RevealShroud(newPoint);
 
             if (game.Player.IsAtEnd)
             {

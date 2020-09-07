@@ -1,15 +1,31 @@
-﻿namespace Muddle.Domain.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Muddle.Domain.Models
 {
     public class MapBuilder
     {
-        private Map _map;
-        public string Name { get; private set; }
-        public int Width => _map.Width;
-        public int Height => _map.Height;
+        private int? _shroudRevealDistance;
 
+        public string Name { get; private set; }
+        public int Width { get; }
+        public int Height { get; }
+
+        private List<Action<Map>> _mapActions;
+        
         public MapBuilder(int width, int height)
         {
-            _map = new Map(width, height);
+            Width = width;
+            Height = height;
+
+            _mapActions = new List<Action<Map>>();
+        }
+
+        private MapBuilder AddAction(Action<Map> action)
+        {
+            _mapActions.Add(action);
+
+            return this;
         }
 
         public MapBuilder Named(string name)
@@ -23,16 +39,12 @@
         {
             var path = new Path(startX, startY, direction, length);
 
-            _map.AddPath(path);
-
-            return this;
+            return AddAction(map => map.AddPath(path));
         }
 
         public MapBuilder AddBackgroundItem(BackgroundItem backgroundItem)
         {
-            _map.AddBackgroundItem(backgroundItem);
-
-            return this;
+            return AddAction(map => map.AddBackgroundItem(backgroundItem));
         }
 
         public MapBuilder AddBackgroundItem(int topLeftX, int topLeftY)
@@ -42,9 +54,7 @@
 
         private MapBuilder AddPointOfInterest(int x, int y, PointOfInterestTypes type)
         {
-            _map.AddPointOfInterest(new PointOfInterest(x, y, type));
-
-            return this;
+            return AddAction(map => map.AddPointOfInterest(new PointOfInterest(x, y, type)));
         }
 
         public MapBuilder AddStart(int x, int y)
@@ -57,12 +67,31 @@
             return AddPointOfInterest(x, y, PointOfInterestTypes.End);
         }
 
+        public MapBuilder WithShroud(int revealDistance = 2)
+        {
+            _shroudRevealDistance = revealDistance;
+            
+            return this;
+        }
+
+
 
         public Map Build()
         {
-            _map.Validate();
+            if (_shroudRevealDistance.HasValue)
+            {
+                _mapActions.Add(x => x.AddShroud(_shroudRevealDistance.Value));
+            }
 
-            return _map;
+            // create the map
+            var map = new Map(Width, Height);
+
+            // apply actions
+            _mapActions.ForEach(x => x.Invoke(map));
+
+            map.Validate();
+
+            return map;
         }
     }
 }

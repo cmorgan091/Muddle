@@ -18,7 +18,7 @@
 
 @if (player.IsAtEnd)
 {
-    <div class="alert alert-success">Congratulations, you have completed the map!</div>
+    <div class="alert alert-success">Congratulations, you have completed the map in @Model.Game.ActiveTimeSpan taking @Model.Game.Player.MovesMade moves!</div>
 }
 else
 {
@@ -32,7 +32,7 @@ else
                 {
                     if (Model.Game.Player.CanMove(direction))
                     {
-                        <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction" class="btn btn-primary btn-sm">@direction</a>
+                        <a asp-controller="Game" asp-action="Move" asp-route-direction="@direction" class="btn btn-primary btn-sm" id="controlMove@(direction)">@direction</a>
                     }
                     else
                     {
@@ -76,6 +76,47 @@ else
     </div>
 }
 <script>
+    // put the player icon onto the map
     var cell = document.getElementById("muddle-map").rows[@(player.Y + 1)].cells[@(player.X + 1)];
     cell.innerHTML += '<img src="/muddle/img/iconsets/default/player.png" class="icon muddle-map-player"/>';
+
+    // capture arrow key presses
+    @if (!player.IsAtEnd)
+    {
+        <text>document.onkeydown = checkKey;</text>
+    }
+
+    function checkKey(e) {
+
+        e = e || window.event;
+
+        if (e.keyCode == '38') {
+            // up arrow
+            requestMove('@nameof(Directions.North)');
+        } else if (e.keyCode == '40') {
+            // down arrow
+            requestMove('@nameof(Directions.South)');
+        } else if (e.keyCode == '37') {
+            // left arrow
+            requestMove('@nameof(Directions.West)');
+        } else if (e.keyCode == '39') {
+            // right arrow
+            requestMove('@nameof(Directions.East)');
+        }
+
+    }
+
+    var moveCapable = {
+        @nameof(Directions.North): @player.CanMove(Directions.North).ToString().ToLower(),
+        @nameof(Directions.East): @player.CanMove(Directions.East).ToString().ToLower(),
+        @nameof(Directions.South): @player.CanMove(Directions.South).ToString().ToLower(),
+        @nameof(Directions.West): @player.CanMove(Directions.West).ToString().ToLower(),
+    }
+
+    function requestMove(direction) {
+        if (moveCapable[direction]) {
+            var btn = document.getElementById('controlMove' + direction);
+            btn.click();
+        }
+    }
 </script>
