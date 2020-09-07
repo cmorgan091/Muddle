@@ -54,5 +54,14 @@ namespace Muddle.Web.Maps
 
             return builder;
         }
+
+        public static MapBuilder ShroudedMazeMapBuilder()
+        {
+            var builder = MazeMapBuilder()
+                .Named("Shrouded Map")
+                .WithShroud(2);
+
+            return builder;
+        }
     }
 }

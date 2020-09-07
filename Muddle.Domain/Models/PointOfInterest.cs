@@ -1,18 +1,12 @@
 ﻿namespace Muddle.Domain.Models
 {
-    public class PointOfInterest
+    public class PointOfInterest : Point
     {
-        public PointOfInterest(int x, int y, PointOfInterestTypes type)
+        public PointOfInterest(int x, int y, PointOfInterestTypes type) : base(x, y)
         {
-            X = x;
-            Y = y;
             Type = type;
         }
 
         public PointOfInterestTypes Type { get; set; }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
     }
 }

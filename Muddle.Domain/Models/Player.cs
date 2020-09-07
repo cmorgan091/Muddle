@@ -5,17 +5,17 @@ namespace Muddle.Domain.Models
 {
     public class Player
     {
-        private Point _currentPoint;
+        private PointDetail _currentPointDetail;
 
         public DateTime LastMoveDateTime { get; private set; }
 
-        public int X => _currentPoint.X;
-        public int Y => _currentPoint.Y;
+        public int X => _currentPointDetail.X;
+        public int Y => _currentPointDetail.Y;
 
         public Map Map { get; private set; }
 
-        public bool IsAtStart => _currentPoint.PointOfInterests.Any(x => x.Type == PointOfInterestTypes.Start);
-        public bool IsAtEnd => _currentPoint.PointOfInterests.Any(x => x.Type == PointOfInterestTypes.End);
+        public bool IsAtStart => _currentPointDetail.PointOfInterests.Any(x => x.Type == PointOfInterestTypes.Start);
+        public bool IsAtEnd => _currentPointDetail.PointOfInterests.Any(x => x.Type == PointOfInterestTypes.End);
 
         public bool CanMoveNorth => CanMove(Directions.North);
         public bool CanMoveEast => CanMove(Directions.East);
@@ -29,33 +29,35 @@ namespace Muddle.Domain.Models
             switch (direction)
             {
                 case Directions.North:
-                    return _currentPoint.PathExtendsNorth;
+                    return _currentPointDetail.PathExtendsNorth;
                 case Directions.East:
-                    return _currentPoint.PathExtendsEast;
+                    return _currentPointDetail.PathExtendsEast;
                 case Directions.South:
-                    return _currentPoint.PathExtendsSouth;
+                    return _currentPointDetail.PathExtendsSouth;
                 case Directions.West:
-                    return _currentPoint.PathExtendsWest;
+                    return _currentPointDetail.PathExtendsWest;
             }
 
             throw new Exception($"Unknown direction {direction}");
         }
 
-        public void AddToMap(Map map, Point point)
+        public void AddToMap(Map map, PointDetail pointDetail)
         {
             Map = map;
-            _currentPoint = point;
+            _currentPointDetail = pointDetail;
         }
 
-        public void Move(Directions direction)
+        public Point Move(Directions direction)
         {
             if (CanMove(direction))
             {
-                var newPoint = Map.GetRelativePoint(_currentPoint, direction);
+                var newPoint = Map.GetRelativePoint(_currentPointDetail, direction);
 
-                _currentPoint = newPoint;
+                _currentPointDetail = newPoint;
                 LastMoveDateTime = DateTime.Now;
                 MovesMade++;
+
+                return _currentPointDetail;
             }
             else
             {

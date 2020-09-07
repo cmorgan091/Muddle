@@ -64,7 +64,7 @@ namespace Muddle.Domain.Models
             BackgroundItems.AddRange(backgroundItems);
         }
 
-        public Point GetStartPoint()
+        public PointDetail GetStartPoint()
         {
             var startPoi = PointOfInterests.FirstOrDefault(x => x.Type == PointOfInterestTypes.Start);
 
@@ -76,7 +76,7 @@ namespace Muddle.Domain.Models
             return GetPoint(startPoi.X, startPoi.Y);
         }
 
-        public Point GetPoint(int x, int y)
+        public PointDetail GetPoint(int x, int y)
         {
             if (x < MinX)
             {
@@ -95,11 +95,7 @@ namespace Muddle.Domain.Models
                 throw new Exception($"Cannot get point where {nameof(y)} is greater than {nameof(MaxY)} {MaxY}");
             }
 
-            var point = new Point
-            {
-                X = x,
-                Y = y,
-            };
+            var point = new PointDetail(x, y);
 
             // find all the path intersections
             foreach (var path in Paths)
@@ -124,21 +120,24 @@ namespace Muddle.Domain.Models
                 i.X == x
                 && i.Y == y));
 
+            // is this point shrouded?
+            point.IsShrouded = ShroudActive && !ShroudRevealedPoints.Contains(point);
+
             return point;
         }
 
-        public Point GetRelativePoint(Point point, Directions direction, int positions = 1)
+        public PointDetail GetRelativePoint(PointDetail pointDetail, Directions direction, int positions = 1)
         {
             switch (direction)
             {
                 case Directions.North:
-                    return GetPoint(point.X, point.Y - positions);
+                    return GetPoint(pointDetail.X, pointDetail.Y - positions);
                 case Directions.South:
-                    return GetPoint(point.X, point.Y + positions);
+                    return GetPoint(pointDetail.X, pointDetail.Y + positions);
                 case Directions.West:
-                    return GetPoint(point.X - positions, point.Y);
+                    return GetPoint(pointDetail.X - positions, pointDetail.Y);
                 case Directions.East:
-                    return GetPoint(point.X + positions, point.Y);
+                    return GetPoint(pointDetail.X + positions, pointDetail.Y);
             }
             throw new Exception($"Unknown direction {direction}");
         }
@@ -170,6 +169,91 @@ namespace Muddle.Domain.Models
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Adding the shroud should be the last thing that is done to a map
+        /// </summary>
+        /// <param name="revealDistance"></param>
+        public void AddShroud(int revealDistance)
+        {
+            ShroudActive = true;
+
+            ShroudRevealDistance = revealDistance;
+
+            // reveal the area around a start point
+            foreach (var startPoint in PointOfInterests.Where(x => x.Type== PointOfInterestTypes.Start))
+            {
+                RevealShroud(startPoint);
+            }
+        }
+
+        public void RevealShroud(Point point)
+        {
+            if (!ShroudActive)
+            {
+                return;
+            }
+
+            // start simple, reveal in all directions
+            var minX = GetSafeXValue(point.X - ShroudRevealDistance);
+            var minY = GetSafeYValue(point.Y - ShroudRevealDistance);
+            var maxX = GetSafeXValue(point.X + ShroudRevealDistance);
+            var maxY = GetSafeYValue(point.Y + ShroudRevealDistance);
+
+            for (var x = minX; x <= maxX; x++)
+            {
+                for (var y = minY; y <= maxY; y++)
+                {
+                    var p = new Point(x, y);
+
+                    if (!ShroudRevealedPoints.Contains(p))
+                    {
+                        ShroudRevealedPoints.Add(p);
+                    }
+                }
+            }
+        }
+
+        private int GetSafeXValue(int x)
+        {
+            if (x < MinX)
+            {
+                x = MinX;
+            }
+
+            if (x > MaxX)
+            {
+                x = MaxX;
+            }
+
+            return x;
+        }
+
+        private int GetSafeYValue(int y)
+        {
+            if (y < MinY)
+            {
+                y = MinY;
+            }
+
+            if (y > MaxY)
+            {
+                y = MaxY;
+            }
+
+            return y;
+        }
+
+        private bool ShroudActive { get; set; }
+
+        private int ShroudRevealDistance { get; set; }
+
+        /// <summary>
+        /// A list of all the points that are no longer covered by the shroud
+        /// </summary>
+        private List<Point> ShroudRevealedPoints { get; set; } = new List<Point>();
+
+
 
         public void Validate()
         {

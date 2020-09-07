@@ -16,7 +16,8 @@ namespace Muddle.AspNetCore.TagHelpers
         /// </summary>
         public bool ShowCoordinates { get; set; }
 
-        private string _imagePath = "/muddle/img/iconsets/default/";//= "_content/Muddle/muddle/img/iconsets/default/";
+        private string _rootImagePath = "/muddle/img/";
+        private string _iconsetImagePath = "/muddle/img/iconsets/default/";//= "_content/Muddle/muddle/img/iconsets/default/";
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -64,6 +65,13 @@ namespace Muddle.AspNetCore.TagHelpers
                 {
                     var point = Map.GetPoint(x, y);
 
+                    if (point.IsShrouded)
+                    {
+                        sb.Append($"<td class='m-0 p-0 muddle-map-cell'><img src='{_rootImagePath}transparent.png' alt='Shroud' class='icon' style='background-color:#000000;'/></td>");
+
+                        continue;
+                    }
+
                     sb.Append("<td class='m-0 p-0 muddle-map-cell'>");
 
                     if (point.HasPath)
@@ -72,15 +80,15 @@ namespace Muddle.AspNetCore.TagHelpers
                         {
                             case Orientations.Vertical:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='{_imagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
-                                    : $"<img src='{_imagePath}path-vertical.png' alt='Path' class='icon'/>");
+                                    ? $"<img src='{_iconsetImagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='{_iconsetImagePath}path-vertical.png' alt='Path' class='icon'/>");
 
                                 break;
 
                             case Orientations.Horizontal:
                                 sb.Append(point.PathTerminusDirection.HasValue
-                                    ? $"<img src='{_imagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
-                                    : $"<img src='{_imagePath}path-horizontal.png' alt='Path' class='icon'/>");
+                                    ? $"<img src='{_iconsetImagePath}path-end-{point.PathTerminusDirection?.ToString().ToLower()}.png' alt='Path end' class='icon'/>"
+                                    : $"<img src='{_iconsetImagePath}path-horizontal.png' alt='Path' class='icon'/>");
                                 break;
 
                             case Orientations.Both:
@@ -89,13 +97,13 @@ namespace Muddle.AspNetCore.TagHelpers
                                 switch (junction.Type)
                                 {
                                     case Junction.JunctionTypes.Crossroad:
-                                        sb.Append($"<img src='{_imagePath}path-junction-crossroad.png' alt='Crossroad' class='icon'/>");
+                                        sb.Append($"<img src='{_iconsetImagePath}path-junction-crossroad.png' alt='Crossroad' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.TJunction:
-                                        sb.Append($"<img src='{_imagePath}path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' alt='T Junction' class='icon'/>");
+                                        sb.Append($"<img src='{_iconsetImagePath}path-junction-tjunction-{junction.FromDirection.ToString().ToLower()}.png' alt='T Junction' class='icon'/>");
                                         break;
                                     case Junction.JunctionTypes.Righthand:
-                                        sb.Append($"<img src='{_imagePath}path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' alt='Corner' class='icon'/>");
+                                        sb.Append($"<img src='{_iconsetImagePath}path-junction-righthand-{junction.FromDirection.ToString().ToLower()}.png' alt='Corner' class='icon'/>");
                                         break;
                                     default:
                                         throw new Exception($"Unknown junction type {junction.Type}");
@@ -114,18 +122,18 @@ namespace Muddle.AspNetCore.TagHelpers
                         if (point.BackgroundItems.Any())
                         {
                             var backgroundItem = point.BackgroundItems.Single();
-                            sb.Append($"<img src='{_imagePath}backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' alt='Background item' class='icon'/>");
+                            sb.Append($"<img src='{_iconsetImagePath}backgrounditem-{backgroundItem.Width}x{backgroundItem.Height}-{backgroundItem.TileNumber}.png' alt='Background item' class='icon'/>");
                         }
                         else
                         {
-                            sb.Append($"<img src='{_imagePath}default.png' alt='Default background' class='icon'/>");
+                            sb.Append($"<img src='{_iconsetImagePath}default.png' alt='Default background' class='icon'/>");
                         }
                     }
 
                     if (point.PointOfInterests.Any())
                     {
                         var poi = point.PointOfInterests.Single();
-                        sb.Append($"<img src='{_imagePath}{poi.Type.ToString().ToLower()}.png' alt='POI: {poi.Type}' class='icon muddle-map-point-of-interest'/>");
+                        sb.Append($"<img src='{_iconsetImagePath}{poi.Type.ToString().ToLower()}.png' alt='POI: {poi.Type}' class='icon muddle-map-point-of-interest'/>");
                     }
 
                     sb.Append("</td>");

@@ -3,9 +3,12 @@
     public class MapBuilder
     {
         private Map _map;
+        private int? _shroudRevealDistance;
+
         public string Name { get; private set; }
         public int Width => _map.Width;
         public int Height => _map.Height;
+        
 
         public MapBuilder(int width, int height)
         {
@@ -57,9 +60,22 @@
             return AddPointOfInterest(x, y, PointOfInterestTypes.End);
         }
 
+        public MapBuilder WithShroud(int revealDistance = 2)
+        {
+            _shroudRevealDistance = revealDistance;
+            
+            return this;
+        }
+
+
 
         public Map Build()
         {
+            if (_shroudRevealDistance.HasValue)
+            {
+                _map.AddShroud(_shroudRevealDistance.Value);
+            }
+
             _map.Validate();
 
             return _map;
