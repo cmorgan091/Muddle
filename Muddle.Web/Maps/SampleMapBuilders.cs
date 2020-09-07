@@ -1,4 +1,5 @@
-﻿using Muddle.Domain.Models;
+﻿using Muddle.Domain.Generator;
+using Muddle.Domain.Models;
 
 namespace Muddle.Web.Maps
 {
@@ -68,6 +69,17 @@ namespace Muddle.Web.Maps
         {
             var builder = MazeMapBuilder()
                 .Named("Shrouded Map Hard")
+                .WithShroud(1);
+
+            return builder;
+        }
+
+        public static MapBuilder RandomHardMazeMapBuilder()
+        {
+            var generator = new MapGenerator(15, 11);
+
+            var builder = generator.Generate()
+                .Named("Random Maze Hard")
                 .WithShroud(1);
 
             return builder;

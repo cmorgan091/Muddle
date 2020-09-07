@@ -69,6 +69,7 @@ namespace Muddle.Web
             gamesMaster.AddMapBuilder(SampleMapBuilders.MazeMapBuilder());
             gamesMaster.AddMapBuilder(SampleMapBuilders.ShroudedMazeMapBuilder());
             gamesMaster.AddMapBuilder(SampleMapBuilders.ShroudedHardMazeMapBuilder());
+            gamesMaster.AddMapBuilder(SampleMapBuilders.RandomHardMazeMapBuilder());
         }
     }
 }
