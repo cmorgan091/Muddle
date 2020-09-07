@@ -7,6 +7,10 @@
     <Description>Domain elements and abstractions for use with the Muddle development environment</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Generators\MazesForProgrammers\Models\" />
+  </ItemGroup>
+
 
 
 </Project>

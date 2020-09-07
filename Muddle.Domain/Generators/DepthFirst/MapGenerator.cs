@@ -5,7 +5,7 @@ using System.Linq;
 using Muddle.Domain.Models;
 using Point = System.Drawing.Point;
 
-namespace Muddle.Domain.Generator
+namespace Muddle.Domain.Generators.DepthFirst
 {
     /// <summary>
     /// A MapGenerator can be used to automate the creation of a MapBuilder and will create a random map each time

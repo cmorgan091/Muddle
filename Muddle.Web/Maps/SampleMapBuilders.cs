@@ -1,4 +1,4 @@
-﻿using Muddle.Domain.Generator;
+﻿using Muddle.Domain.Generators.DepthFirst;
 using Muddle.Domain.Models;
 
 namespace Muddle.Web.Maps

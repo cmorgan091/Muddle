@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Muddle.Domain.Generator
+namespace Muddle.Domain.Generators.DepthFirst
 {
     public static class MapGeneratorExtensions
     {

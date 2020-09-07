@@ -1,6 +1,8 @@
 ﻿@page
 @using Muddle.Domain.Models
-@using Muddle.Domain.Generator
+@using Muddle.Domain.Generators.DepthFirst
+@using Muddle.Domain.Generators.MazesForProgrammers
+@using System.Diagnostics
 @model MapViewModel
 @{
     ViewData["Title"] = "Map Viewer";
@@ -9,8 +11,27 @@
 <h1 class="display-4">Map Viewer</h1>
 <p>This page is used for the development of the Map Viewer</p>
 
+@{
+    var dfTimespan = Stopwatch.StartNew();
+    var dfGenerator = new MapGenerator(15, 10).Generate().Build();
+    dfTimespan.Stop();
+}
+
+<h2>Depth First (@dfTimespan.ElapsedMilliseconds ms)</h2>
 <div class="muddle-map-view">
 
-    <render-map Map="@(new MapGenerator(15, 10).Generate().Build())" show-coordinates="true"></render-map>
+    <render-map Map="@(dfGenerator)" show-coordinates="true"></render-map>
+
+</div>
+
+@{
+    var mfpTimespan = Stopwatch.StartNew();
+    var generator = new MfpMapGenerator().Generate(15, 10).Build();
+    mfpTimespan.Stop();
+}
+<h2>Aldous Broder Avoid Links (@mfpTimespan.ElapsedMilliseconds ms)</h2>
+<div class="muddle-map-view">
+
+    <render-map Map="@(generator)" show-coordinates="true"></render-map>
 
 </div>

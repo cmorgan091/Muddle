@@ -1,4 +1,5 @@
-﻿using Muddle.Domain.Generator;
+﻿using Muddle.Domain.Generators.DepthFirst;
+using Muddle.Domain.Generators.MazesForProgrammers;
 using Xunit;
 
 namespace Muddle.Domain.Test
@@ -11,6 +12,14 @@ namespace Muddle.Domain.Test
             var generator = new MapGenerator(5, 5);
 
             generator.Generate();
+        }
+
+        [Fact]
+        public void MfpGenerator_Test()
+        {
+            var generator = new MfpMapGenerator();
+
+            generator.Generate(10, 5);
         }
     }
 }
