@@ -24,7 +24,7 @@ namespace Muddle.Domain.Generators
             switch (model.Algorithm)
             {
                 case Algorithms.DepthFirst:
-                    return new DfMapGenerator(model.Width, model.Height).Generate();
+                    return new DfMapGenerator(model.Width, model.Height, model.BlockedPoints).Generate();
                 default:
                     return new MfpMapGenerator().Generate(model.Width, model.Height, model.Algorithm.ToMfpAlgorithm());
             }

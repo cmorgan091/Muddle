@@ -14,7 +14,20 @@
 
 @{
     var dfTimespan = Stopwatch.StartNew();
-    var dfGenerator = new MapBuilderGenerator().Generate(Algorithms.DepthFirst,15, 10).Build();
+    var generatorModel = new MapBuilderGeneratorModel
+    {
+        Algorithm = Algorithms.DepthFirst,
+        Width = 4,
+        Height = 4,
+        BlockedPoints = new List<Point>
+        {
+            new Point(0, 0),
+            new Point(0, 1),
+            new Point(0, 2),
+        }
+    };
+
+    var dfGenerator = new MapBuilderGenerator().Generate(generatorModel).Build();
     dfTimespan.Stop();
 }
 
