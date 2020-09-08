@@ -1,0 +1,30 @@
+﻿@page
+@using System.Diagnostics
+@using Muddle.Domain.Generators
+@model MapViewModel
+@{
+    ViewData["Title"] = "Map Generator";
+}
+
+<h1 class="display-4">Map Generator</h1>
+<p>In addition to being able to hand code maps, Muddle also includes a powerful Map Generator with multiple implemented algorithms</p>
+
+@{
+    var algorithms = Enum.GetValues(typeof(Algorithms)).Cast<Algorithms>();
+
+    foreach (var algorithm in algorithms)
+    {
+        var sw = Stopwatch.StartNew();
+        var map = new MapBuilderGenerator().Generate(algorithm, 15, 10).Build();
+        sw.Stop();
+
+        <h2>@algorithm (@sw.ElapsedMilliseconds ms)</h2>
+        
+        <render-map Map="@(map)" show-coordinates="true"></render-map>
+
+        <hr/>
+    }
+
+
+    
+}

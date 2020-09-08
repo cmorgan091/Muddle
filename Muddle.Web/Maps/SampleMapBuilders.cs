@@ -76,7 +76,7 @@ namespace Muddle.Web.Maps
 
         public static MapBuilder RandomHardMazeMapBuilder()
         {
-            var generator = new MapGenerator(15, 11);
+            var generator = new DfMapGenerator(15, 11);
 
             var builder = generator.Generate()
                 .Named("Random Maze Hard")

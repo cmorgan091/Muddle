@@ -10,21 +10,20 @@ using Muddle.Domain.Models;
  * A port of the code base to C# came from Avrohom Yisroel Silver (Mr Yossu)
  * https://github.com/MrYossu/MazesForProgrammers/
  */
-
-
+ 
 namespace Muddle.Domain.Generators.MazesForProgrammers
 {
     public class MfpMapGenerator
     {
         public enum Algorithms
         {
-            //AldousBroder,
+            AldousBroder,
             AldousBroderAvoidLinks,
-            //AldousBroderWilson,
-            //BinaryTree,
-            //Sidewinder,
-            //Wilson,
-            //WilsonJb,
+            AldousBroderWilson,
+            BinaryTree,
+            Sidewinder,
+            Wilson,
+            WilsonJb,
         }
 
         public Maze Maze { get; set; }
@@ -35,6 +34,18 @@ namespace Muddle.Domain.Generators.MazesForProgrammers
             {
                 case Algorithms.AldousBroderAvoidLinks:
                     return AldousBroderAvoidLinks.Create(height, width);
+                case Algorithms.AldousBroder:
+                    return AldousBroder.Create(height, width);
+                case Algorithms.AldousBroderWilson:
+                    return AldousBroderWilson.Create(height, width);
+                case Algorithms.BinaryTree:
+                    return BinaryTree.Create(height, width);
+                case Algorithms.Sidewinder:
+                    return Sidewinder.Create(height, width);
+                case Algorithms.Wilson:
+                    return Wilson.Create(height, width);
+                case Algorithms.WilsonJb:
+                    return WilsonJb.Create(height, width);
             }
 
             throw new Exception($"Cannot get maze for algorithm '{algorithm}'");

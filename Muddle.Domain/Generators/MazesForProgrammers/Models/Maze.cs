@@ -40,9 +40,9 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
         {
             get
             {
-                for (int row = 0; row < Rows; row++)
+                for (var row = 0; row < Rows; row++)
                 {
-                    for (int col = 0; col < Cols; col++)
+                    for (var col = 0; col < Cols; col++)
                     {
                         yield return _cells[row, col];
                     }
@@ -58,7 +58,7 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
             {
                 if (c.DeadEnd && R.Next() < p)
                 {
-                    Cell neighbour = c.Neighbours.Any(n => n.DeadEnd)
+                    var neighbour = c.Neighbours.Any(n => n.DeadEnd)
                         ? c.Neighbours.Where(n => n.DeadEnd).Rand(R)
                         : c.Neighbours.Where(n => !c.Linked(n)).Rand(R);
                     c.Link(neighbour);
@@ -75,9 +75,9 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
         {
             get
             {
-                CellDistance max = this[0, 0].Distances().Max;
-                Distances d = this[max.Cell.Row, max.Cell.Col].Distances();
-                List<Cell> path = d.PathFrom(d.Max.Cell.Row, d.Max.Cell.Col);
+                var max = this[0, 0].Distances().Max;
+                var d = this[max.Cell.Row, max.Cell.Col].Distances();
+                var path = d.PathFrom(d.Max.Cell.Row, d.Max.Cell.Col);
                 return path;
             }
         }
@@ -87,9 +87,9 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
         private Cell[,] BuildCells()
         {
             _cells = new Cell[Rows, Cols];
-            for (int col = 0; col < Cols; col++)
+            for (var col = 0; col < Cols; col++)
             {
-                for (int row = 0; row < Rows; row++)
+                for (var row = 0; row < Rows; row++)
                 {
                     _cells[row, col] = new Cell(row, col);
                 }
@@ -101,9 +101,9 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
 
         private void ConfigureCells()
         {
-            for (int col = 0; col < Cols; col++)
+            for (var col = 0; col < Cols; col++)
             {
-                for (int row = 0; row < Rows; row++)
+                for (var row = 0; row < Rows; row++)
                 {
                     _cells[row, col].North = this[row - 1, col];
                     _cells[row, col].South = this[row + 1, col];
@@ -119,14 +119,14 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
 
         public string ToString(Func<Cell, string> format)
         {
-            string output = "+" + string.Concat(Enumerable.Repeat("---+", Cols)) + _nl;
-            for (int row = 0; row < Rows; row++)
+            var output = "+" + string.Concat(Enumerable.Repeat("---+", Cols)) + _nl;
+            for (var row = 0; row < Rows; row++)
             {
-                string cellRow = "|";
-                string lowerWall = "+";
-                for (int col = 0; col < Cols; col++)
+                var cellRow = "|";
+                var lowerWall = "+";
+                for (var col = 0; col < Cols; col++)
                 {
-                    Cell cell = this[row, col];
+                    var cell = this[row, col];
                     cellRow += format(cell) + (cell?.Linked(cell.East) ?? false ? " " : "|");
                     lowerWall += (cell?.Linked(cell.South) ?? false ? "   " : "---") + "+";
                 }

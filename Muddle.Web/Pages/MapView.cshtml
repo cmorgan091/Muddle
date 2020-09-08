@@ -3,6 +3,7 @@
 @using Muddle.Domain.Generators.DepthFirst
 @using Muddle.Domain.Generators.MazesForProgrammers
 @using System.Diagnostics
+@using Muddle.Domain.Generators
 @model MapViewModel
 @{
     ViewData["Title"] = "Map Viewer";
@@ -13,7 +14,20 @@
 
 @{
     var dfTimespan = Stopwatch.StartNew();
-    var dfGenerator = new MapGenerator(15, 10).Generate().Build();
+    var generatorModel = new MapBuilderGeneratorModel
+    {
+        Algorithm = Algorithms.DepthFirst,
+        Width = 4,
+        Height = 4,
+        BlockedPoints = new List<Point>
+        {
+            new Point(0, 0),
+            new Point(0, 1),
+            new Point(0, 2),
+        }
+    };
+
+    var dfGenerator = new MapBuilderGenerator().Generate(generatorModel).Build();
     dfTimespan.Stop();
 }
 
@@ -21,17 +35,5 @@
 <div class="muddle-map-view">
 
     <render-map Map="@(dfGenerator)" show-coordinates="true"></render-map>
-
-</div>
-
-@{
-    var mfpTimespan = Stopwatch.StartNew();
-    var generator = new MfpMapGenerator().Generate(15, 10).Build();
-    mfpTimespan.Stop();
-}
-<h2>Aldous Broder Avoid Links (@mfpTimespan.ElapsedMilliseconds ms)</h2>
-<div class="muddle-map-view">
-
-    <render-map Map="@(generator)" show-coordinates="true"></render-map>
 
 </div>

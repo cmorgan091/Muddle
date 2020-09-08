@@ -32,17 +32,17 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
 
         public List<Cell> PathFrom(int row, int col)
         {
-            CellDistance start = Cells.FirstOrDefault(c => c.Cell.Row == row && c.Cell.Col == col);
+            var start = Cells.FirstOrDefault(c => c.Cell.Row == row && c.Cell.Col == col);
             if (start == null)
             {
                 throw new ArgumentException($"No such cell at ({row}, {col})");
             }
 
-            List<Cell> path = new List<Cell> {start.Cell};
-            CellDistance current = start;
+            var path = new List<Cell> {start.Cell};
+            var current = start;
             while (current.Cell != Root)
             {
-                CellDistance next = Cells.First(c =>
+                var next = Cells.First(c =>
                     current.Cell.Links.Contains(c.Cell) && c.Distance == current.Distance - 1);
                 current = next;
                 path.Add(current.Cell);

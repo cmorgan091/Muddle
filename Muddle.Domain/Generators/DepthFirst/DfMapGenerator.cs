@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Muddle.Domain.Models;
-using Point = System.Drawing.Point;
 
 namespace Muddle.Domain.Generators.DepthFirst
 {
@@ -11,33 +10,44 @@ namespace Muddle.Domain.Generators.DepthFirst
     /// A MapGenerator can be used to automate the creation of a MapBuilder and will create a random map each time
     /// It uses a Randomized depth-first search algorithm: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search
     /// </summary>
-    public class MapGenerator
+    public class DfMapGenerator
     {
         private readonly CellState[,] _cells;
         private readonly int _width;
         private readonly int _height;
         private readonly Random _random;
+        private readonly List<Point> _blockedPoints;
 
         private Point _start;
         private Point _end;
         private int _maxDistance;
  
-        public MapGenerator(int width, int height)
+        public DfMapGenerator(int width, int height, List<Point> blockedPoints = null)
         {
             _width = width;
             _height = height;
             _cells = new CellState[width, height];
-            for(var x=0; x<width; x++)
+            _blockedPoints = blockedPoints ?? new List<Point>();
+
+            for(var x = 0; x<width; x++)
             {
-                for(var y=0; y < height; y++)
+                for(var y = 0; y < height; y++)
                 {
-                    _cells[x, y] = CellState.Initial;
+                    _cells[x, y] = _blockedPoints.Contains(new Point(x, y))
+                        ? CellState.Visited
+                        : CellState.Initial;
                 }
             }
 
             _random = new Random();
 
             _start = new Point(_random.Next(width), _random.Next(height));
+            while (_blockedPoints.Contains(_start))
+            {
+                // try again
+                _start = new Point(_random.Next(width), _random.Next(height));
+            }
+
             VisitCell(_start.X, _start.Y, 0);
         }
 
@@ -111,6 +121,8 @@ namespace Muddle.Domain.Generators.DepthFirst
         public MapBuilder Generate()
         {
             var builder = new MapBuilder(_width, _height);
+
+            _blockedPoints.ForEach(x => this[x.X, x.Y] = CellState.Initial);
 
             // find all horizontal paths
             for (var y = 0; y < _height; y++)

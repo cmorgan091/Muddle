@@ -5,9 +5,9 @@
 
         public class Map
         {
-            public const int MinWidth = 5;
+            public const int MinWidth = 3;
 
-            public const int MinHeight = 5;
+            public const int MinHeight = 3;
         }
         
     }
