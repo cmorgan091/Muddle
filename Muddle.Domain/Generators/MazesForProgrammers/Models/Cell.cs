@@ -43,7 +43,7 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
             Links.Add(cell);
             if (bidirectional)
             {
-                cell.Link(this, !bidirectional);
+                cell.Link(this, false);
             }
 
             return this;
@@ -54,7 +54,7 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
             Links.Remove(cell);
             if (bidirectional)
             {
-                cell.Unlink(this, !bidirectional);
+                cell.Unlink(this, false);
             }
 
             return this;
@@ -71,11 +71,11 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.Models
 
         public Distances Distances()
         {
-            Distances distances = new Distances(this);
-            List<Cell> frontier = new List<Cell> {this};
+            var distances = new Distances(this);
+            var frontier = new List<Cell> {this};
             while (frontier.Any())
             {
-                List<Cell> newFrontier = new List<Cell>();
+                var newFrontier = new List<Cell>();
                 frontier.ForEach(c => c.Links.Where(cl => !distances.Cells.Select(dc => dc.Cell).Contains(cl)).ForEach(
                     link =>
                     {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Muddle.Domain.Generators.MazesForProgrammers.Models;
 
@@ -9,11 +8,11 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
     {
         public static Maze Create(int rows, int cols)
         {
-            Maze maze = new Maze(rows, cols);
-            Random r = maze.R;
+            var maze = new Maze(rows, cols);
+            var r = maze.R;
             maze.Cells.ForEach(c =>
             {
-                List<Cell> neighbours = new List<Cell> {c.North, c.East}.Where(c1 => c1 != null).ToList();
+                var neighbours = new List<Cell> {c.North, c.East}.Where(c1 => c1 != null).ToList();
                 if (neighbours.Count == 1)
                 {
                     c.Link(neighbours.Single());

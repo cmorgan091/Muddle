@@ -10,8 +10,7 @@ using Muddle.Domain.Models;
  * A port of the code base to C# came from Avrohom Yisroel Silver (Mr Yossu)
  * https://github.com/MrYossu/MazesForProgrammers/
  */
-
-
+ 
 namespace Muddle.Domain.Generators.MazesForProgrammers
 {
     public class MfpMapGenerator

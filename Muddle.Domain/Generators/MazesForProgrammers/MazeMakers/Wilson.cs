@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Muddle.Domain.Generators.MazesForProgrammers.Models;
 
@@ -9,17 +8,17 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
     {
         public static Maze Create(int rows, int cols)
         {
-            Maze maze = new Maze(rows, cols);
-            Random r = maze.R;
-            List<Cell> walk = new List<Cell>();
+            var maze = new Maze(rows, cols);
+            var r = maze.R;
+            var walk = new List<Cell>();
             // Pick a random cell to mark as visited. This will be the end point of our first walk
-            Cell first = maze.Cells.Rand(r);
+            var first = maze.Cells.Rand(r);
             // Pick a starting cell for our first walk
-            Cell current = maze.Cells.Where(c => c.Row != first.Row && c.Col != first.Col).Rand(r);
+            var current = maze.Cells.Where(c => c.Row != first.Row && c.Col != first.Col).Rand(r);
             walk.Add(maze.Cells.First(c => c.Row == current.Row && c.Col == current.Col));
             while (maze.Cells.Any(c => !c.Links.Any()))
             {
-                Cell next = walk.Last().Neighbours.Rand(r);
+                var next = walk.Last().Neighbours.Rand(r);
                 if (next == first || next.Links.Any())
                 {
                     walk.Add(next);

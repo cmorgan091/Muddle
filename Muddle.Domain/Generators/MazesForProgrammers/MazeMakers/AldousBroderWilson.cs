@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Muddle.Domain.Generators.MazesForProgrammers.Models;
 
@@ -11,17 +10,17 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
 
         public static Maze Create(int rows, int cols)
         {
-            int abMaxPercentage = 80;
-            int totalCells = rows * cols;
-            int tenPercent = totalCells / 10;
-            Maze maze = new Maze(rows, cols);
-            Random r = maze.R;
+            var abMaxPercentage = 80;
+            var totalCells = rows * cols;
+            var tenPercent = totalCells / 10;
+            var maze = new Maze(rows, cols);
+            var r = maze.R;
 
             // Start off with Aldous-Broder. Run this until we have carved a specified percentage of cells
-            int unvisited = rows * cols - 1;
-            Cell current = maze.Cells.Rand(r);
-            int currentPercent = tenPercent;
-            int n = 0;
+            var unvisited = rows * cols - 1;
+            var current = maze.Cells.Rand(r);
+            var currentPercent = tenPercent;
+            var n = 0;
             while (unvisited > 0 && currentPercent < abMaxPercentage)
             {
                 if (totalCells - unvisited == currentPercent)
@@ -30,7 +29,7 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
                     n++;
                 }
 
-                Cell next = current.Neighbours.Rand(r);
+                var next = current.Neighbours.Rand(r);
                 if (next.Links.Count == 0)
                 {
                     current.Link(next);
@@ -41,13 +40,13 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
             }
 
             // Now switch to Wilson's
-            List<Cell> walk = new List<Cell>();
-            Cell first = maze.Cells.Where(c => !c.Links.Any()).Rand(r);
+            var walk = new List<Cell>();
+            var first = maze.Cells.Where(c => !c.Links.Any()).Rand(r);
             current = maze.Cells.Where(c => !c.Links.Any()).Rand(r);
             walk.Add(maze.Cells.First(c => c.Row == current.Row && c.Col == current.Col));
             while (maze.Cells.Any(c => !c.Links.Any()))
             {
-                Cell next = walk.Last().Neighbours.Rand(r);
+                var next = walk.Last().Neighbours.Rand(r);
                 if (next == first || next.Links.Any())
                 {
                     walk.Add(next);

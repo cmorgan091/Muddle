@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Muddle.Domain.Generators.MazesForProgrammers.Models;
 
 namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
@@ -8,9 +7,9 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
     {
         public static Maze Create(int rows, int cols)
         {
-            Maze maze = new Maze(rows, cols);
-            Random r = maze.R;
-            List<Cell> run = new List<Cell>();
+            var maze = new Maze(rows, cols);
+            var r = maze.R;
+            var run = new List<Cell>();
             maze.Cells.ForEach(c =>
             {
                 if (c.WesternBoundary)
@@ -22,7 +21,7 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
                 // If the target is > 50 we favour horizontal runs, if < 50, we favour vertical runs
                 if (c.EasternBoundary || !c.NorthernBoundary && r.Next(100) > 50)
                 {
-                    Cell cr = run.Rand(r);
+                    var cr = run.Rand(r);
                     if (!cr.NorthernBoundary)
                     {
                         cr.Link(cr.North);

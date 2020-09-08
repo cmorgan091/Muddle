@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Muddle.Domain.Generators.MazesForProgrammers.Models;
 
@@ -11,16 +10,16 @@ namespace Muddle.Domain.Generators.MazesForProgrammers.MazeMakers
         // Whilst my implementation was more consistent in execution time, his was about 30% faster on average
         public static Maze Create(int rows, int cols)
         {
-            Maze maze = new Maze(rows, cols);
-            Random r = maze.R;
-            List<Cell> unvisited = maze.Cells.ToList();
-            Cell first = unvisited.Rand(r);
+            var maze = new Maze(rows, cols);
+            var r = maze.R;
+            var unvisited = maze.Cells.ToList();
+            var first = unvisited.Rand(r);
             unvisited.Remove(first);
 
             while (unvisited.Any())
             {
-                Cell next = unvisited.Rand(r);
-                List<Cell> walk = new List<Cell> {next};
+                var next = unvisited.Rand(r);
+                var walk = new List<Cell> {next};
 
                 while (unvisited.Contains(next))
                 {
