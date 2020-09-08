@@ -11,7 +11,7 @@ namespace Muddle.Domain.Generators.DepthFirst
     /// A MapGenerator can be used to automate the creation of a MapBuilder and will create a random map each time
     /// It uses a Randomized depth-first search algorithm: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search
     /// </summary>
-    public class MapGenerator
+    public class DfMapGenerator
     {
         private readonly CellState[,] _cells;
         private readonly int _width;
@@ -22,7 +22,7 @@ namespace Muddle.Domain.Generators.DepthFirst
         private Point _end;
         private int _maxDistance;
  
-        public MapGenerator(int width, int height)
+        public DfMapGenerator(int width, int height)
         {
             _width = width;
             _height = height;

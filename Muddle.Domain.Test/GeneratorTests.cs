@@ -9,7 +9,7 @@ namespace Muddle.Domain.Test
         [Fact]
         public void MapGenerator_Test()
         {
-            var generator = new MapGenerator(5, 5);
+            var generator = new DfMapGenerator(5, 5);
 
             generator.Generate();
         }

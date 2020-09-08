@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Muddle.Domain.Generators.DepthFirst
 {
-    public static class MapGeneratorExtensions
+    public static class DfMapGeneratorExtensions
     {
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
         {
@@ -17,12 +17,12 @@ namespace Muddle.Domain.Generators.DepthFirst
             }
         }
  
-        public static MapGenerator.CellState OppositeWall(this MapGenerator.CellState orig)
+        public static DfMapGenerator.CellState OppositeWall(this DfMapGenerator.CellState orig)
         {
-            return (MapGenerator.CellState)(((int) orig >> 2) | ((int) orig << 2)) & MapGenerator.CellState.Initial;
+            return (DfMapGenerator.CellState)(((int) orig >> 2) | ((int) orig << 2)) & DfMapGenerator.CellState.Initial;
         }
  
-        public static bool HasFlag(this MapGenerator.CellState cs, MapGenerator.CellState flag)
+        public static bool HasFlag(this DfMapGenerator.CellState cs, DfMapGenerator.CellState flag)
         {
             return ((int)cs & (int)flag) != 0;
         }
